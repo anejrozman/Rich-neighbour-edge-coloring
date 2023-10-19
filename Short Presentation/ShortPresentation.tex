@@ -1,0 +1,132 @@
+\documentclass[12pt,a4paper]{amsart}
+% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{url}
+%\usepackage[normalem]{ulem}
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{tikz}
+
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphs.standard}
+
+%\makeatletter
+%\renewcommand\section{\@startsection{section}{1}%
+%  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}%
+%  {\normalfont\scshape\large\centering}}
+%\renewcommand\subsection{\@startsection{subsection}{2}%
+%  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}%
+%  {\normalfont\scshape}}
+%\renewcommand\subsubsection{\@startsection{subsubsection}{3}%
+%  \z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
+%  {\normalfont\itshape}}
+%\makeatother
+
+% ne spreminjaj podatkov, ki vplivajo na obliko strani
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+\overfullrule=15pt % oznaci predlogo vrstico
+
+
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definition}[section]
+\newtheorem{primer}[definicija]{Example}
+\newtheorem{opomba}[definicija]{Remark}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lemma}
+\newtheorem{izrek}[definicija]{Theorem}
+\newtheorem{trditev}[definicija]{Statement}
+\newtheorem{posledica}[definicija]{Corollary}
+\newtheorem{conjecture}[definicija]{Conjecture}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+% naslednje ukaze ustrezno popravi
+\newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finančna matematika
+\newcommand{\imeavtorja}{Anej Rozman, Tanja Luštrek} % ime avtorja
+\newcommand{\imementorja}{doc.~dr.~Janoš Vidali} % akademski naziv in ime mentorja
+\newcommand{\imesomentorja}{prof.~dr.~Riste Škrekovski}
+\newcommand{\naslovdela}{Rich-neighbour edge coloring}
+\newcommand{\letnica}{2023} %letnica diplome
+
+\begin{document}
+
+\thispagestyle{empty}
+\noindent{\large
+UNIVERZA V LJUBLJANI\\[1mm]
+FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
+\program\ -- 1.~stopnja}
+\vfill
+
+\begin{center}{\large
+\imeavtorja\\[2mm]
+{\bf \naslovdela}\\[10mm]
+Seminarska naloga pri predmetu finančni praktikum\\[2mm]
+Short presentation\\[1cm]
+Mentors: \imementorja, \imesomentorja\\[2mm]}
+\end{center}
+\vfill
+
+\noindent{\large
+Ljubljana, \letnica}
+\pagebreak
+
+\section{Uvod}
+
+In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbour edge coloring.
+
+
+\begin{definicija}
+    In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ have different colors. An edge coloring is 
+    called a $rich\text{-}neighbour \ edge \ coloring$ if every edge is adjacent to some rich edge.
+\end{definicija}
+
+\begin{definicija}
+    $X'_{rn}(G)$ denotes the smallest number of colors for which there exists a rich-neighbour edge coloring.
+\end{definicija}
+
+\begin{conjecture}
+    For every graph $G$ of maximum degree $\Delta$, $X'_{rn}(G) \leq 2\Delta - 1$ holds.
+\end{conjecture}
+
+\begin{primer}
+    Let's take a look at the Petersen graph and an example of a rich-neighboiur edge coloring.
+    \begin{center}
+        \begin{tikzpicture}[every node/.style={draw,circle,very thick}]
+            \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
+            \graph[clockwise, radius=1.5cm] {subgraph I_n [n=5,name=B] };
+        
+            \foreach \i [evaluate={\j=int(mod(\i+2+4,5)+1)}]% using Paul Gaborit's optimisation
+               in {1,2,3,4,5}{
+              \draw (A \i) -- (B \i);
+              \draw (B \j) -- (B \i);
+            }
+        \end{tikzpicture}
+    \end{center}
+    We can see that for the Petersen graph (which is 3-regular) $X'_{rn}=5 \leq 5$.
+\end{primer}
+\end{document}
