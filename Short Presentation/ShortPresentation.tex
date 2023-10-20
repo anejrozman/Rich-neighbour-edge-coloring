@@ -97,7 +97,7 @@ Ljubljana, \letnica}
 
 \section{Introduction}
 
-In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbour edge coloring.
+In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbor edge coloring.
 
 
 \begin{definicija}
@@ -116,17 +116,34 @@ In this paper we set out to analyse an open conjecture in a modern graph theory 
 \begin{primer}
     Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.
     \begin{center}
-        \begin{tikzpicture}[every node/.style={draw,circle,very thick}]
+        \begin{tikzpicture}[every node/.style={draw,circle, style={text opacity=0}}]
             \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
             \graph[clockwise, radius=1.5cm] {subgraph I_n [n=5,name=B] };
-        
-            \foreach \i [evaluate={\j=int(mod(\i+2+4,5)+1)}]% using Paul Gaborit's optimisation
-               in {1,2,3,4,5}{
-              \draw (A \i) -- (B \i);
-              \draw (B \j) -- (B \i);
-            }
+    
+    
+            % Define edge colors for the graph
+            \draw[red, line width=1.3pt] (A 1) -- (B 1);
+            \draw[orange, line width=1.3pt] (A 2) -- (B 2);
+            \draw[blue, line width=1.3pt] (A 3) -- (B 3);
+            \draw[orange, line width=1.3pt] (A 4) -- (B 4);
+            \draw[orange, line width=1.3pt] (A 5) -- (B 5);
+            \draw[red, line width=1.3pt] (A 1) -- (A 2);
+            \draw[blue, line width=1.3pt] (A 2) -- (A 3);
+            \draw[blue, line width=1.3pt] (A 3) -- (A 4);
+            \draw[red, line width=1.3pt] (A 4) -- (A 5);
+            \draw[blue, line width=1.3pt] (A 5) -- (A 1);
+            \draw[green, line width=1.3pt] (B 5) -- (B 2);
+            \draw[green, line width=1.3pt] (B 4) -- (B 1);
+            \draw[orange, line width=1.3pt] (B 3) -- (B 1);
+            \draw[yellow, line width=1.3pt] (B 5) -- (B 3);
+            \draw[yellow, line width=1.3pt] (B 4) -- (B 2);
         \end{tikzpicture}
     \end{center}
     We can see that for the Petersen graph (which is 3-regular) $X'_{rn}=5 \leq 5$.
 \end{primer}
+
+\section{Plan}
+Our assingnment is to create an algorthm that proves the conjecture for graphs of maximum degree 4 (So it finds a rich-neighbor edge coloring for every graph, for example for all graphs with 5 veriticies and a maximum degree of 5), and to make a random search algorythm for graphs of maximum degree $\geq5$.
+
+
 \end{document}
