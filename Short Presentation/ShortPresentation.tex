@@ -66,28 +66,28 @@
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
 
 % naslednje ukaze ustrezno popravi
-\newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finančna matematika
+\newcommand{\program}{Financial mathematics} % ime studijskega programa: Matematika/Finančna matematika
 \newcommand{\imeavtorja}{Anej Rozman, Tanja Luštrek} % ime avtorja
-\newcommand{\imementorja}{doc.~dr.~Janoš Vidali} % akademski naziv in ime mentorja
-\newcommand{\imesomentorja}{prof.~dr.~Riste Škrekovski}
-\newcommand{\naslovdela}{Rich-neighbour edge coloring}
+\newcommand{\imementorja}{Assistant Professor Janoš Vidali} % akademski naziv in ime mentorja
+\newcommand{\imesomentorja}{Professor Riste Škrekovski}
+\newcommand{\naslovdela}{Rich-Neighbor Edge Colorings}
 \newcommand{\letnica}{2023} %letnica diplome
 
 \begin{document}
 
 \thispagestyle{empty}
 \noindent{\large
-UNIVERZA V LJUBLJANI\\[1mm]
-FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
-\program\ -- 1.~stopnja}
+UNIVERSITY OF LJUBLJANA\\[1mm]
+FACULTY OF MATHEMATICS AND PHYSICS\\[5mm]
+\program\ -- 1st cycle}
 \vfill
 
 \begin{center}{\large
 \imeavtorja\\[2mm]
 {\bf \naslovdela}\\[10mm]
-Seminarska naloga pri predmetu finančni praktikum\\[2mm]
-Short presentation\\[1cm]
-Mentors: \imementorja, \imesomentorja\\[2mm]}
+Term Paper in Finance Lab\\[2mm]
+Short Presentation\\[1cm]
+Advisers: \imementorja, \imesomentorja\\[2mm]}
 \end{center}
 \vfill
 
@@ -95,18 +95,18 @@ Mentors: \imementorja, \imesomentorja\\[2mm]}
 Ljubljana, \letnica}
 \pagebreak
 
-\section{Uvod}
+\section{Introduction}
 
 In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbour edge coloring.
 
 
 \begin{definicija}
     In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ have different colors. An edge coloring is 
-    called a $rich\text{-}neighbour \ edge \ coloring$ if every edge is adjacent to some rich edge.
+    called a $rich\text{-}neighbor \ edge \ coloring$ if every edge is adjacent to some rich edge.
 \end{definicija}
 
 \begin{definicija}
-    $X'_{rn}(G)$ denotes the smallest number of colors for which there exists a rich-neighbour edge coloring.
+    $X'_{rn}(G)$ denotes the smallest number of colors for which there exists a rich-neighbor edge coloring.
 \end{definicija}
 
 \begin{conjecture}
@@ -114,7 +114,7 @@ In this paper we set out to analyse an open conjecture in a modern graph theory 
 \end{conjecture}
 
 \begin{primer}
-    Let's take a look at the Petersen graph and an example of a rich-neighboiur edge coloring.
+    Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.
     \begin{center}
         \begin{tikzpicture}[every node/.style={draw,circle,very thick}]
             \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
