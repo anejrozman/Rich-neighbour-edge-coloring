@@ -87,7 +87,7 @@ FACULTY OF MATHEMATICS AND PHYSICS\\[5mm]
 {\bf \naslovdela}\\[10mm]
 Term Paper in Finance Lab\\[2mm]
 Short Presentation\\[1cm]
-Advisers: \imementorja, \imesomentorja\\[2mm]}
+Advisers: \imementorja, \\ \imesomentorja\\[2mm]}
 \end{center}
 \vfill
 
@@ -143,41 +143,39 @@ In this paper we set out to analyse an open conjecture in a modern graph theory 
 \end{primer}
 
 \section{Plan}
-    Our assingnment is to create an algorthm that 'proves' the conjecture for  regular graphs of degree 4$\geq$ 
-    (So it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies), 
+    Our assingnment is to create an algorthm of sorts that ``proves'' the conjecture for regular graphs of degree 4 $\geq$ 
+    (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies), 
     and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
 
-\subsection{Whole number integer programming}
-    Using sagemath we plan to create an integer programming model for the problem, that checks all smaller graphs 
-    if there exists a rich-neighbor coloring with $\leq2\Delta - 1$ colors. Our interger program looks like this:
+\subsection{Integer Programming}
+    Using SageMath we plan to create an integer programming model, that checks all smaller graphs for a rich-neighbor coloring with $\leq2\Delta - 1$ colors. Our interger program looks like this:
     $$
     \min t \\
     $$
     $$
     \forall e: \sum_{i=1}^{k} x_{ei} = 1 \\
     $$
-    $$\forall i\forall u \forall v, w \sim u, v \neq u: x_{uv, i} + x_{uw, i} \leq 1 \\$$
-    $$\forall e \forall i: x_{ei} \cdot i \leq 1 \\$$
-    $$\forall uv \forall w \sim u, w \neq v \forall z ~ v, z \neq u, w \forall i: x_{uq, i} + x_{vz, i} + y_{uv} \leq 1 \\$$
+    $$\forall i \ \forall u \ \forall v, w \sim u, v \neq u: x_{uv, i} + x_{uw, i} \leq 1 \\$$
+    $$\forall e \ \forall i: x_{ei} \cdot i \leq 1 \\$$
+    $$\forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w \ \forall i: x_{uW, i} + x_{vz, i} + y_{uv} \leq 2 \\$$
     $$\forall e: \sum_{f \sim e}y_f \geq 1 \\$$
     $$
     \forall e \forall i: x_{ei} \in \{0, 1\}, y_{e} \in \{0, 1\} \\
     $$
     where
-    $$        x_{ei} = \begin{cases}
+    \begin{align*}        x_{ei} = \begin{cases}
                 1, \  \text{if edge $e$ has color $i$} \\
                 0, \  \text{otherwise}
-        \end{cases} \\
+        \end{cases} & \text{and} &
             y_{e} = \begin{cases}
                 1, \  \text{if edge $e$ is rich} \\
-                0, \  \text{otherwise}
+                0, \  \text{otherwise.}
             \end{cases}
-     $$
-     We will determine at what point does the computation of rich-neighor coloring become too intense for this technique and 
-     will use the next random search algorythm.
+    \end{align*}
+     We will determine at what point the computation of rich-neighbor edge coloring becomes too intense for this technique and we will then use the random search algorythm.
 
-     \subsection{Random search}
-        We will create a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. Our plan is to create a random graph generator that will generate a graph with a given number of verticies and edges. Then we will check if the conjecture holds for the generated graph. We will repeat this process for a given number of times and then we will check if the conjecture holds for the class of graphs. We will repeat this process for different classes of graphs and different number of verticies and edges. The algorythm will be implemented in sagemath, and its pseudocode is as follows:
+     \subsection{Random Search}
+        By creating a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. Our plan is to create a random graph generator that will generate a regular graph with a given number of verticies and edges. Then we will check if the conjecture holds for the generated graph and we will repeat this process for a given number of times. Then we will repeat this process for different classes of graphs. The algorythm will be implemented in SageMath and its pseudocode is as follows:
 
 
 \end{document}
