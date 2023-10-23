@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1697877190 "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Short Presentation/ShortPresentation.tex" "ShortPresentation.pdf" "ShortPresentation" 1697877195
+["pdflatex"] 1698054139 "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Short Presentation/ShortPresentation.tex" "ShortPresentation.pdf" "ShortPresentation" 1698054140
   "C:/Users/38651/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1636385673 9726367 c86c2a9804d7592c617a691d30e1597c ""
   "C:/Users/38651/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1697791774 123357 28e027cbdbbaf14773e0974241f40532 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
@@ -26,9 +26,11 @@
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136768653 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb" 1247596667 32001 6aeea3afe875097b1eb0da29acd61e28 ""
+  "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1247596666 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247596667 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1247596666 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
@@ -135,10 +137,10 @@
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfrcs.sty" 1621073245 325 f9f16d12354225b7dd52a3321f085955 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1636288472 56029 3f7889dab51d620aa43177c391b7b190 ""
-  "ShortPresentation.aux" 1697877194 475 8a08a5ab2c282f919712d0d314ea867d "pdflatex"
-  "ShortPresentation.tex" 1697877187 5489 3da14a94fb7be0e685b93188f70ecefc ""
-  "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Short Presentation/ShortPresentation.tex" 1697877187 5489 3da14a94fb7be0e685b93188f70ecefc ""
+  "ShortPresentation.aux" 1698054140 723 1e9f01f042bd1655b1a7379ccfff127a "pdflatex"
+  "ShortPresentation.tex" 1698054138 7483 32ff580fa76d53128a0c159ec035f23d ""
+  "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Short Presentation/ShortPresentation.tex" 1698054138 7483 32ff580fa76d53128a0c159ec035f23d ""
   (generated)
+  "ShortPresentation.aux"
   "ShortPresentation.pdf"
   "ShortPresentation.log"
-  "ShortPresentation.aux"

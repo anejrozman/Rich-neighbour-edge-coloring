@@ -122,30 +122,62 @@ In this paper we set out to analyse an open conjecture in a modern graph theory 
     
     
             % Define edge colors for the graph
-            \draw[red, line width=1.3pt] (A 1) -- (B 1);
-            \draw[orange, line width=1.3pt] (A 2) -- (B 2);
-            \draw[blue, line width=1.3pt] (A 3) -- (B 3);
-            \draw[orange, line width=1.3pt] (A 4) -- (B 4);
-            \draw[orange, line width=1.3pt] (A 5) -- (B 5);
+            \draw[yellow, line width=1.3pt] (A 1) -- (B 1);
+            \draw[blue, line width=1.3pt] (A 2) -- (B 2);
+            \draw[green, line width=1.3pt] (A 3) -- (B 3);
+            \draw[red, line width=1.3pt] (A 4) -- (B 4);
+            \draw[cyan, line width=1.3pt] (A 5) -- (B 5);
             \draw[red, line width=1.3pt] (A 1) -- (A 2);
-            \draw[blue, line width=1.3pt] (A 2) -- (A 3);
-            \draw[blue, line width=1.3pt] (A 3) -- (A 4);
-            \draw[red, line width=1.3pt] (A 4) -- (A 5);
-            \draw[blue, line width=1.3pt] (A 5) -- (A 1);
-            \draw[green, line width=1.3pt] (B 5) -- (B 2);
-            \draw[green, line width=1.3pt] (B 4) -- (B 1);
-            \draw[orange, line width=1.3pt] (B 3) -- (B 1);
-            \draw[yellow, line width=1.3pt] (B 5) -- (B 3);
-            \draw[yellow, line width=1.3pt] (B 4) -- (B 2);
+            \draw[cyan, line width=1.3pt] (A 2) -- (A 3);
+            \draw[yellow, line width=1.3pt] (A 3) -- (A 4);
+            \draw[blue, line width=1.3pt] (A 4) -- (A 5);
+            \draw[green, line width=1.3pt] (A 5) -- (A 1);
+            \draw[yellow, line width=1.3pt] (B 5) -- (B 2);
+            \draw[cyan, line width=1.3pt] (B 4) -- (B 1);
+            \draw[blue, line width=1.3pt] (B 3) -- (B 1);
+            \draw[red, line width=1.3pt] (B 5) -- (B 3);
+            \draw[green, line width=1.3pt] (B 4) -- (B 2);
         \end{tikzpicture}
     \end{center}
     We can see that for the Petersen graph (which is 3-regular) $X'_{rn}\leq 5$.
 \end{primer}
 
 \section{Plan}
-Our assingnment is to create an algorthm that 'proves' the conjecture for  regular graphs of degree 4$\geq$ 
-(So it finds a rich-neighbor edge coloring for every graph, for example for all 5-regular graphs with 5 veriticies), 
-and to make a random search algorythm at the point where our algorythm is too slow.
+    Our assingnment is to create an algorthm that 'proves' the conjecture for  regular graphs of degree 4$\geq$ 
+    (So it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies), 
+    and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
+
+\subsection{Whole number integer programming}
+    Using sagemath we plan to create an integer programming model for the problem, that checks all smaller graphs 
+    if there exists a rich-neighbor coloring with $\leq2\Delta - 1$ colors. Our interger program looks like this:
+    $$
+    \min t \\
+    $$
+    $$
+    \forall e: \sum_{i=1}^{k} x_{ei} = 1 \\
+    $$
+    $$\forall i\forall u \forall v, w \sim u, v \neq u: x_{uv, i} + x_{uw, i} \leq 1 \\$$
+    $$\forall e \forall i: x_{ei} \cdot i \leq 1 \\$$
+    $$\forall uv \forall w \sim u, w \neq v \forall z ~ v, z \neq u, w \forall i: x_{uq, i} + x_{vz, i} + y_{uv} \leq 1 \\$$
+    $$\forall e: \sum_{f \sim e}y_f \geq 1 \\$$
+    $$
+    \forall e \forall i: x_{ei} \in \{0, 1\}, y_{e} \in \{0, 1\} \\
+    $$
+    where
+    $$        x_{ei} = \begin{cases}
+                1, \  \text{if edge $e$ has color $i$} \\
+                0, \  \text{otherwise}
+        \end{cases} \\
+            y_{e} = \begin{cases}
+                1, \  \text{if edge $e$ is rich} \\
+                0, \  \text{otherwise}
+            \end{cases}
+     $$
+     We will determine at what point does the computation of rich-neighor coloring become too intense for this technique and 
+     will use the next random search algorythm.
+
+     \subsection{Random search}
+        We will create a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. Our plan is to create a random graph generator that will generate a graph with a given number of verticies and edges. Then we will check if the conjecture holds for the generated graph. We will repeat this process for a given number of times and then we will check if the conjecture holds for the class of graphs. We will repeat this process for different classes of graphs and different number of verticies and edges. The algorythm will be implemented in sagemath, and its pseudocode is as follows:
 
 
 \end{document}
