@@ -1,0 +1,99 @@
+\documentclass[12pt,a4paper]{amsart}
+% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{url}
+%\usepackage[normalem]{ulem}
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphs.standard}
+
+%\makeatletter
+%\renewcommand\section{\@startsection{section}{1}%
+%  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}%
+%  {\normalfont\scshape\large\centering}}
+%\renewcommand\subsection{\@startsection{subsection}{2}%
+%  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}%
+%  {\normalfont\scshape}}
+%\renewcommand\subsubsection{\@startsection{subsubsection}{3}%
+%  \z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
+%  {\normalfont\itshape}}
+%\makeatother
+
+% ne spreminjaj podatkov, ki vplivajo na obliko strani
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+\overfullrule=15pt % oznaci predlogo vrstico
+
+
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definition}[section]
+\newtheorem{primer}[definicija]{Example}
+\newtheorem{opomba}[definicija]{Remark}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lemma}
+\newtheorem{izrek}[definicija]{Theorem}
+\newtheorem{trditev}[definicija]{Statement}
+\newtheorem{posledica}[definicija]{Corollary}
+\newtheorem{conjecture}[definicija]{Conjecture}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+% naslednje ukaze ustrezno popravi
+\newcommand{\program}{Financial mathematics} % ime studijskega programa: Matematika/Finančna matematika
+\newcommand{\imeavtorja}{Anej Rozman, Tanja Luštrek} % ime avtorja
+\newcommand{\imementorja}{Assistant Professor Janoš Vidali} % akademski naziv in ime mentorja
+\newcommand{\imesomentorja}{Professor Riste Škrekovski}
+\newcommand{\naslovdela}{Rich-Neighbor Edge Colorings}
+\newcommand{\letnica}{2023} %letnica diplome
+
+\begin{document}
+
+\thispagestyle{empty}
+{\large
+\noindent UNIVERSITY OF LJUBLJANA\\[1mm]
+FACULTY OF MATHEMATICS AND PHYSICS\\[5mm]
+\program\ -- 1st cycle}
+\vfill
+
+\begin{center}{\large
+\imeavtorja\\[2mm]
+{\bf \naslovdela}\\[10mm]
+Term Paper in Finance Lab\\[2mm]
+Long Presentation\\[1cm]
+Advisers: \imementorja, \\ \imesomentorja\\[2mm]}
+\end{center}
+\vfill
+
+{\large
+Ljubljana, \letnica}
+\pagebreak
+
+\end{document}
