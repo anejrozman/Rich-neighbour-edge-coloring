@@ -10,6 +10,7 @@
 \usepackage{caption}
 \usepackage{lipsum}
 \usepackage{tikz}
+\usepackage{xcolor}
 
 \usetikzlibrary{graphs}
 \usetikzlibrary{graphs.standard}
@@ -63,7 +64,7 @@
 % ukaz za slovarsko geslo
 \newlength{\odstavek}
 \setlength{\odstavek}{\parindent}
-\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+\newcommand{\geslo}[2]{\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
 
 % naslednje ukaze ustrezno popravi
 \newcommand{\program}{Financial mathematics} % ime studijskega programa: Matematika/Finančna matematika
@@ -76,8 +77,8 @@
 \begin{document}
 
 \thispagestyle{empty}
-\noindent{\large
-UNIVERSITY OF LJUBLJANA\\[1mm]
+{\large
+\noindent UNIVERSITY OF LJUBLJANA\\[1mm]
 FACULTY OF MATHEMATICS AND PHYSICS\\[5mm]
 \program\ -- 1st cycle}
 \vfill
@@ -91,14 +92,13 @@ Advisers: \imementorja, \\ \imesomentorja\\[2mm]}
 \end{center}
 \vfill
 
-\noindent{\large
+{\large
 Ljubljana, \letnica}
 \pagebreak
 
 \section{Introduction}
 
 In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbor edge coloring.
-
 
 \begin{definicija}
     In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ have different colors. An edge coloring is 
@@ -114,68 +114,77 @@ In this paper we set out to analyse an open conjecture in a modern graph theory 
 \end{conjecture}
 
 \begin{primer}
-    Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.
-    \begin{center}
-        \begin{tikzpicture}[every node/.style={draw,circle, style={text opacity=0}}]
-            \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
-            \graph[clockwise, radius=1.5cm] {subgraph I_n [n=5,name=B] };
-    
-    
-            % Define edge colors for the graph
-            \draw[yellow, line width=1.3pt] (A 1) -- (B 1);
-            \draw[blue, line width=1.3pt] (A 2) -- (B 2);
-            \draw[green, line width=1.3pt] (A 3) -- (B 3);
-            \draw[red, line width=1.3pt] (A 4) -- (B 4);
-            \draw[cyan, line width=1.3pt] (A 5) -- (B 5);
-            \draw[red, line width=1.3pt] (A 1) -- (A 2);
-            \draw[cyan, line width=1.3pt] (A 2) -- (A 3);
-            \draw[yellow, line width=1.3pt] (A 3) -- (A 4);
-            \draw[blue, line width=1.3pt] (A 4) -- (A 5);
-            \draw[green, line width=1.3pt] (A 5) -- (A 1);
-            \draw[yellow, line width=1.3pt] (B 5) -- (B 2);
-            \draw[cyan, line width=1.3pt] (B 4) -- (B 1);
-            \draw[blue, line width=1.3pt] (B 3) -- (B 1);
-            \draw[red, line width=1.3pt] (B 5) -- (B 3);
-            \draw[green, line width=1.3pt] (B 4) -- (B 2);
-        \end{tikzpicture}
-    \end{center}
-    We can see that for the Petersen graph (which is 3-regular) $X'_{rn}\leq 5$.
-\end{primer}
+Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.\\
+\begin{center}
+    \begin{tikzpicture}[every node/.style={draw,circle, style={text opacity=0}}]
+        \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
+        \graph[clockwise, radius=1.5cm] {subgraph I_n [n=5,name=B] };
+
+        % Define edge colors for the graph
+        \draw[yellow, line width=1.3pt] (A 1) -- (B 1);
+        \draw[blue, line width=1.3pt] (A 2) -- (B 2);
+        \draw[green, line width=1.3pt] (A 3) -- (B 3);
+        \draw[red, line width=1.3pt] (A 4) -- (B 4);
+        \draw[cyan, line width=1.3pt] (A 5) -- (B 5);
+        \draw[red, line width=1.3pt] (A 1) -- (A 2);
+        \draw[cyan, line width=1.3pt] (A 2) -- (A 3);
+        \draw[yellow, line width=1.3pt] (A 3) -- (A 4);
+        \draw[blue, line width=1.3pt] (A 4) -- (A 5);
+        \draw[green, line width=1.3pt] (A 5) -- (A 1);
+        \draw[yellow, line width=1.3pt] (B 5) -- (B 2);
+        \draw[cyan, line width=1.3pt] (B 4) -- (B 1);
+        \draw[blue, line width=1.3pt] (B 3) -- (B 1);
+        \draw[red, line width=1.3pt] (B 5) -- (B 3);
+        \draw[green, line width=1.3pt] (B 4) -- (B 2);
+    \end{tikzpicture}\\
+\end{center}
+We can see that for the Petersen graph (which is 3-regular) $X'_{rn}\leq 5$.
+\end{primer}\\
+\textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
+\pagebreak
 
 \section{Plan}
-    Our assingnment is to create an algorthm of sorts that ``proves'' the conjecture for regular graphs of degree 4 $\geq$ 
-    (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies), 
-    and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
+
+Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 $\geq$ (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
 
 \subsection{Integer Programming}
-    Using SageMath we plan to create an integer programming model, that checks all smaller graphs for a rich-neighbor coloring with $\leq2\Delta - 1$ colors. Our interger program looks like this:
-    $$
-    \min t \\
-    $$
-    $$
-    \forall e: \sum_{i=1}^{k} x_{ei} = 1 \\
-    $$
-    $$\forall i \ \forall u \ \forall v, w \sim u, v \neq u: x_{uv, i} + x_{uw, i} \leq 1 \\$$
-    $$\forall e \ \forall i: x_{ei} \cdot i \leq 1 \\$$
-    $$\forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w \ \forall i: x_{uW, i} + x_{vz, i} + y_{uv} \leq 2 \\$$
-    $$\forall e: \sum_{f \sim e}y_f \geq 1 \\$$
-    $$
-    \forall e \forall i: x_{ei} \in \{0, 1\}, y_{e} \in \{0, 1\} \\
-    $$
-    where
-    \begin{align*}        x_{ei} = \begin{cases}
-                1, \  \text{if edge $e$ has color $i$} \\
-                0, \  \text{otherwise}
-        \end{cases} & \text{and} &
-            y_{e} = \begin{cases}
-                1, \  \text{if edge $e$ is rich} \\
-                0, \  \text{otherwise.}
-            \end{cases}
-    \end{align*}
-     We will determine at what point the computation of rich-neighbor edge coloring becomes too intense for this technique and we will then use the random search algorythm.
 
-     \subsection{Random Search}
-        By creating a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. Our plan is to create a random graph generator that will generate a regular graph with a given number of verticies and edges. Then we will check if the conjecture holds for the generated graph and we will repeat this process for a given number of times. Then we will repeat this process for different classes of graphs. The algorythm will be implemented in SageMath and its pseudocode is as follows:
+Using SageMath we plan to create an integer programming model, that checks all smaller graphs for a rich-neighbor edge coloring with $\leq 2 \Delta - 1$ colors. Our interger program looks like this:\\
+
+minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
+
+subject to $\forall e: \quad \sum_{i=1}^{k} x_{ei} = 1$ \hfill \textcolor{gray}{each edge is exactly one color}\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
+\textcolor{white}{hihi} \hfill \textcolor{gray}{edges with the same vertice are a different color}\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \textcolor{gray}{we use less or equal to $t$ colors}\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w: \quad x_{uw, i} + x_{vz, i} + y_{uv} \leq 2$ \hfill \\[0.1mm]
+\textcolor{white}{hihi} \hfill \textcolor{gray}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \textcolor{gray}{every edge is adjacent to some rich edge}\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
+
+where
+\begin{align*}        x_{ei} = \begin{cases}
+            1, \  \text{if edge $e$ has color $i$} \\
+            0, \  \text{otherwise}
+    \end{cases} & \text{and} & 
+    y_{e} = \begin{cases}
+        1, \  \text{if edge $e$ is rich} \\
+        0, \  \text{otherwise.}
+    \end{cases}
+\end{align*}
+
+ We will determine at what point the computation of rich-neighbor edge coloring becomes too intense for this technique and we will then use the random search algorythm.
+
+\subsection{Random Search}
+
+We will construct a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. Our plan is to create a random graph generator that will generate a regular graph with a given number of verticies and edges. Then we will check if the conjecture holds for the generated graph and we will repeat this process for a given number of times. Then we will repeat this process for different classes of graphs. The algorythm will be implemented in SageMath and its pseudocode is as follows:
 
 
 \end{document}

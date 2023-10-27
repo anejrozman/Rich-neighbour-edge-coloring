@@ -512,6 +512,7 @@ INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgf
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\xcolor\xcolor.sty
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\graphs\tikzlibrarygraphs.code.tex
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\graphs\tikzlibrarygraphs.code.tex
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\graphs\tikzlibrarygraphs.standard.code.tex
@@ -603,3 +604,5 @@ INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
