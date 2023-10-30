@@ -156,7 +156,7 @@ minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
 subject to $\forall e: \quad \sum_{i=1}^{k} x_{ei} = 1$ \hfill \textcolor{gray}{each edge is exactly one color}\\
 
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
-\textcolor{white}{hihi} \hfill \textcolor{gray}{edges with the same vertice are a different color}\\
+\textcolor{white}{hihi} \hfill \textcolor{gray}{edges with the same vertex are a different color}\\
 
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \textcolor{gray}{we use less or equal to $t$ colors}\\
 
@@ -180,11 +180,22 @@ where
     \end{cases}
 \end{align*}
 
- We will determine at what point the computation of rich-neighbor edge coloring becomes too intense for this technique and we will then use the random search algorythm.
+ We will determine at what point the computation of rich-neighbor edge coloring becomes 
+ too intense for this technique and we will then use the random search algorythm.
 
 \subsection{Random Search}
 
-We will construct a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. Our plan is to create a random graph generator that will generate a regular graph with a given number of verticies and edges. Then we will check if the conjecture holds for the generated graph and we will repeat this process for a given number of times. Then we will repeat this process for different classes of graphs. The algorythm will be implemented in SageMath and its pseudocode is as follows:
-
+We will construct a random search algorythm that will check if the conjecture holds for
+a class of graphs that are too large to be checked individually. We plan to iterate over 
+all $k$-regular graphs on $n$-vertices and based on the generated sample of 
+$$
+X \sim \begin{pmatrix}
+    0 & 1 \\
+    1 - p & p
+\end{pmatrix}
+$$
+for a small $p$ we will check the graph or not. Since the conjecture should hold for all
+graphs, we will determine the value $p$ so that we check approximately the same number of graphs for
+each $k$ and $n$.
 
 \end{document}
