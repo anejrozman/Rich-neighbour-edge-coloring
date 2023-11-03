@@ -138,18 +138,18 @@ Let's take a look at the Petersen graph and an example of a rich-neighbor edge c
         \draw[green, line width=1.3pt] (B 4) -- (B 2);
     \end{tikzpicture}\\
 \end{center}
-We can see that for the Petersen graph (which is 3-regular) $X'_{rn}\leq 5$.
+We can see that for the Petersen graph (which is 3-regular) we can find a correct coloring with 5 colors so $X'_{rn} \leq 5 \leq 2 \cdot 3 - 1 = 5$. This shows that the conjecture holds for this graph.
 \end{primer}\\
 \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
 \pagebreak
 
 \section{Plan}
 
-Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 $\geq$ (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
+Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 or more (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
 
 \subsection{Integer Programming}
 
-Using SageMath we plan to create an integer programming model, that checks all smaller graphs for a rich-neighbor edge coloring with $\leq 2 \Delta - 1$ colors. Our interger program looks like this:\\
+Using SageMath we plan to construct an integer programming model that finds a rich-neighbor edge coloring for a given graph. Our interger program looks like this:\\
 
 minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
 
@@ -165,6 +165,8 @@ subject to $\forall e: \quad \sum_{i=1}^{k} x_{ei} = 1$ \hfill \textcolor{gray}{
 
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \textcolor{gray}{every edge is adjacent to some rich edge}\\
 
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \textcolor{gray}{we use $\geq 2 \Delta - 1$ colors}\\
+
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
 
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
@@ -178,24 +180,22 @@ where
         1, \  \text{if edge $e$ is rich} \\
         0, \  \text{otherwise.}
     \end{cases}
-\end{align*}
+\end{align*}\\
 
- We will determine at what point the computation of rich-neighbor edge coloring becomes 
- too intense for this technique and we will then use the random search algorythm.
+We plan to look for appropriate graph colorings with $\geq 2 \Delta - 1$ colors because, if we find a coloring with $2 \Delta - 1$ colors then the smallest possible number of colors is smaller of equal to that and the conjecture holds for that graph. If we need more than $2 \Delta - 1$ colors then it does not hold. The computation is also a lot quicker this way.\\
+
+Next we will determine at what point the computation of rich-neighbor edge coloring becomes too intense for this technique and we will switch to the random search algorythm.
+\pagebreak
 
 \subsection{Random Search}
 
-We will construct a random search algorythm that will check if the conjecture holds for
-a class of graphs that are too large to be checked individually. We plan to iterate over 
-all $k$-regular graphs on $n$-vertices and based on the generated sample of 
+We will construct a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually. We plan to iterate over all $k$-regular graphs on $n$-vertices and based on the generated sample of 
 $$
 X \sim \begin{pmatrix}
     0 & 1 \\
     1 - p & p
 \end{pmatrix}
 $$
-for a small $p$ we will check the graph or not. Since the conjecture should hold for all
-graphs, we will determine the value $p$ so that we check approximately the same number of graphs for
-each $k$ and $n$.
+for a small $p$ we will check the graph or not. Since the conjecture should hold for all graphs, we will determine the value of $p$ so that we check approximately the same number of graphs for each $k$ and $n$.
 
 \end{document}
