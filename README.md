@@ -6,5 +6,5 @@ In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ h
 We want to verify the following conjecture:
 $$For \ every \ graph \ G \ of \ maximum \ degree \ \Delta, X_{rn}'(G) \leq 2\Delta - 1 \ holds.$$
 
-We implenment the coloring and apply the tests to verify the above conjecture fo regular graphs of degree $\Delta \geq 4$. For small graphs we do it ... , for larger graphs we apply a random search ...
+We implement the coloring and apply the tests to verify the above conjecture fo regular graphs of degree $\Delta \geq 4$. For small graphs we do it ... , for larger graphs we apply a random search ...
 
