@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1699613585 "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1699613604
+["pdflatex"] 1700640877 "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/projekt/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1700640880
   "C:/Users/tanja/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1633353837 9715384 702c1159b0eccf8098121f6cb738e987 ""
   "C:/Users/tanja/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1697611439 123198 3bbd8409905bfb5918bb33e6a0462096 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -107,7 +107,7 @@
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsopn.sty" 1622995597 4128 c11da5c2df397f39d5783fc9307689d0 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amstext.sty" 1622995597 2444 b015525572ea0d0165d6ce81ba5e5259 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/arabi/bblopts.cfg" 1139961600 902 c30e5c373bc58bde21f8f63a3091626f ""
-  "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/babel-slovenian/slovene.ldf" 1612951983 4834 98ee81640c5ff33462d182c4f24765fe ""
+  "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/babel-english/english.ldf" 1622998066 7008 9ff5fdcc865b01beca2b0fe4a46231d4 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/base/inputenc.sty" 1623738100 5049 969aec05d5f39c43f8005910498fcf90 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption-ams-smf.sto" 1696165987 2176 c0bb71a9780b6b41388cfa629b1a32f7 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption.sty" 1696165987 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
@@ -139,10 +139,12 @@
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfrcs.sty" 1621069645 325 f9f16d12354225b7dd52a3321f085955 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1623002060 55589 34128738f682d033422ca125f82e5d62 ""
-  "LongPresentation.aux" 1699613586 710 3ae2c7269e924562766e7f9535e2e1a0 "pdflatex"
-  "LongPresentation.tex" 1699613582 8214 6d9ea251bd4b4f5f9ff9acb1819350f1 ""
-  "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" 1699613582 8214 6d9ea251bd4b4f5f9ff9acb1819350f1 ""
+  "LongPresentation.aux" 1700640879 1229 47b11d630ba5faffd5ca36a97c73fdd3 "pdflatex"
+  "LongPresentation.tex" 1700640873 8489 49f4db8c7bd9dfb47bb109ee4eb76264 ""
+  "LongPresentation.toc" 1700640879 628 4a869fadaf97987d77151eba7fced94e "pdflatex"
+  "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/projekt/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" 1700640873 8489 49f4db8c7bd9dfb47bb109ee4eb76264 ""
   (generated)
+  "LongPresentation.toc"
+  "LongPresentation.aux"
   "LongPresentation.log"
   "LongPresentation.pdf"
-  "LongPresentation.aux"

@@ -1,6 +1,6 @@
-PWD c:\Users\tanja\Documents\FIN\3_LETNIK\FP\Rich-Neighbor-Edge-Colorings\Long Presentation
+PWD c:\Users\tanja\Documents\FIN\3_LETNIK\FP\projekt\Rich-Neighbor-Edge-Colorings\Long Presentation
 INPUT C:\Users\tanja\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\tanja\Documents\FIN\3_LETNIK\FP\Rich-Neighbor-Edge-Colorings\Long Presentation\LongPresentation.tex
+INPUT c:\Users\tanja\Documents\FIN\3_LETNIK\FP\projekt\Rich-Neighbor-Edge-Colorings\Long Presentation\LongPresentation.tex
 OUTPUT LongPresentation.log
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\amscls\amsart.cls
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\amscls\amsart.cls
@@ -109,10 +109,10 @@ INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\arabi\bblopts.cfg
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\arabi\bblopts.cfg
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\arabi\bblopts.cfg
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\arabi\bblopts.cfg
-INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-slovenian\slovene.ldf
-INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-slovenian\slovene.ldf
-INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-slovenian\slovene.ldf
-INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-slovenian\slovene.ldf
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-english\english.ldf
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-english\english.ldf
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-english\english.ldf
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\babel-english\english.ldf
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
@@ -560,6 +560,11 @@ INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 OUTPUT LongPresentation.pdf
 INPUT C:\Users\tanja\AppData\Local\MiKTeX\pdftex\config\pdftex.map
+INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmcsc10.tfm
+INPUT .\LongPresentation.toc
+INPUT LongPresentation.toc
+INPUT LongPresentation.toc
+OUTPUT LongPresentation.toc
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmcsc10.tfm
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\tanja\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm

@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{amsart}
 % ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
-\usepackage[slovene]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -15,17 +15,17 @@
 \usetikzlibrary{graphs}
 \usetikzlibrary{graphs.standard}
 
-%\makeatletter
-%\renewcommand\section{\@startsection{section}{1}%
-%  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}%
-%  {\normalfont\scshape\large\centering}}
-%\renewcommand\subsection{\@startsection{subsection}{2}%
-%  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}%
-%  {\normalfont\scshape}}
-%\renewcommand\subsubsection{\@startsection{subsubsection}{3}%
-%  \z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
-%  {\normalfont\itshape}}
-%\makeatother
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}
+  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}
+  {\normalfont\scshape\large\centering}}
+\renewcommand\subsection{\@startsection{subsection}{2}
+  \z@{.5\linespacing\@plus.7\linespacing}{.5\linespacing}
+  {\normalfont\scshape}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}
+  \z@{.5\linespacing\@plus.7\linespacing}{-.5em}
+  {\normalfont\itshape}}
+\makeatother
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -96,6 +96,10 @@ Advisers: \imementorja, \\ \imesomentorja\\[2mm]}
 Ljubljana, \letnica}
 \pagebreak
 
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
 \section{Introduction}
 
 In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbor edge coloring.
@@ -143,13 +147,16 @@ We can see that for the Petersen graph (which is 3-regular) we can find a correc
 \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
 \pagebreak
 
-\section{Plan}
+%\section{Plan}
 
-Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 or more (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
+%Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 or more (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
 
+\section{Generating Graphs}
+
+\section{Algorithms}
 \subsection{Integer Programming}
 
-Using SageMath we plan to construct an integer programming model that finds a rich-neighbor edge coloring for a given graph. Our interger program looks like this:\\
+Using SageMath we constructed an integer programming model that finds a rich-neighbor edge coloring for a given graph. Our interger program looks like this:\\
 
 minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
 
@@ -182,13 +189,21 @@ where
     \end{cases}
 \end{align*}\\
 
-We plan to look for appropriate graph colorings with $\geq 2 \Delta - 1$ colors because, if we find a coloring with $2 \Delta - 1$ colors then the smallest possible number of colors is smaller of equal to that and the conjecture holds for that graph. If we need more than $2 \Delta - 1$ colors then it does not hold. The computation is also a lot quicker this way.\\
+We only looked for appropriate graph colorings with $\geq 2 \Delta - 1$ colors because, if we find a coloring with $2 \Delta - 1$ colors then the smallest possible number of colors also satisfies the conjecture for that graph. If we need more than $2 \Delta - 1$ colors then the conjecture does not hold. The computation is also a lot quicker this way.\\
 
-Next we will determine at what point the computation of rich-neighbor edge coloring becomes too intense for this technique and we will switch to the random search algorythm.
+\subsection{Iterative Algorithm}
+
+%Next we determined at what point the computation of rich-neighbor edge coloring becomes too intense for this technique. By running the programme on a server we saw this to be at $k$-regular graphs on $n$ vertices and we will switch to the random search algorythm.
 \pagebreak
 
-\subsection{Random Search}
+\section{Complete search}
 
-We will construct a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually.
+\section{Random Search}
+
+\section{Findings}
+
+\section{Conclusion}
+
+%We will construct a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually.
 
 \end{document}
