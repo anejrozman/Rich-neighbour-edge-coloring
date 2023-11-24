@@ -133,7 +133,7 @@ def tweak(graph):
         G.add_edge(u1, v2)
         G.add_edge(v1, u2)
     
-    if not G.is_regular():
+    if not G.is_connected():
         return tweak(graph)
     return G
 
