@@ -1,10 +1,11 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{\tocsection {}{1}{Introduction}}{3}{}%
-\contentsline {section}{\tocsection {}{2}{Generating Graphs}}{4}{}%
-\contentsline {section}{\tocsection {}{3}{Algorithms}}{4}{}%
-\contentsline {subsection}{\tocsubsection {}{3.1}{Integer Programming}}{4}{}%
-\contentsline {subsection}{\tocsubsection {}{3.2}{Iterative Algorithm}}{4}{}%
-\contentsline {section}{\tocsection {}{4}{Complete search}}{5}{}%
-\contentsline {section}{\tocsection {}{5}{Random Search}}{5}{}%
-\contentsline {section}{\tocsection {}{6}{Findings}}{5}{}%
-\contentsline {section}{\tocsection {}{7}{Conclusion}}{5}{}%
+\contentsline {section}{\tocsection {}{2}{Algorithms}}{4}{}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Integer Programming}}{4}{}%
+\contentsline {subsection}{\tocsubsection {}{2.2}{Iterative Algorithm}}{4}{}%
+\contentsline {section}{\tocsection {}{3}{Complete search}}{6}{}%
+\contentsline {subsection}{\tocsubsection {}{3.1}{Graph generation}}{6}{}%
+\contentsline {section}{\tocsection {}{4}{Random Search}}{6}{}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{Graph generation}}{6}{}%
+\contentsline {section}{\tocsection {}{5}{Findings}}{7}{}%
+\contentsline {section}{\tocsection {}{6}{Conclusion}}{7}{}%

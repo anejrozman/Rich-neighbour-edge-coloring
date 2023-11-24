@@ -11,6 +11,8 @@
 \usepackage{lipsum}
 \usepackage{tikz}
 \usepackage{xcolor}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
 
 \usetikzlibrary{graphs}
 \usetikzlibrary{graphs.standard}
@@ -102,108 +104,249 @@ Ljubljana, \letnica}
 
 \section{Introduction}
 
-In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbor edge coloring.
+    In this paper we set out to analyse an open conjecture in a modern graph theory problem known as rich-neighbor edge coloring.
 
-\begin{definicija}
-    In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ have different colors. An edge coloring is 
-    called a $rich\text{-}neighbor \ edge \ coloring$ if every edge is adjacent to some rich edge.
-\end{definicija}
+    \begin{definicija}
+        In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ have different colors. An edge coloring is 
+        called a $rich\text{-}neighbor \ edge \ coloring$ if every edge is adjacent to some rich edge.
+    \end{definicija}
 
-\begin{definicija}
-    $X'_{rn}(G)$ denotes the smallest number of colors for which there exists a rich-neighbor edge coloring.
-\end{definicija}
+    \begin{definicija}
+        $X'_{rn}(G)$ denotes the smallest number of colors for which there exists a rich-neighbor edge coloring.
+    \end{definicija}
 
-\begin{conjecture}
-    For every graph $G$ of maximum degree $\Delta$, $X'_{rn}(G) \leq 2\Delta - 1$ holds.
-\end{conjecture}
+    \begin{conjecture}
+        For every graph $G$ of maximum degree $\Delta$, $X'_{rn}(G) \leq 2\Delta - 1$ holds.
+    \end{conjecture}
 
-\begin{primer}
-Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.\\
-\begin{center}
-    \begin{tikzpicture}[every node/.style={draw,circle, style={text opacity=0}}]
-        \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
-        \graph[clockwise, radius=1.5cm] {subgraph I_n [n=5,name=B] };
+    \begin{primer}
+    Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.\\
+    \begin{center}
+        \begin{tikzpicture}[every node/.style={draw,circle, style={text opacity=0}}]
+            \graph[clockwise, radius=3cm] {subgraph C_n [n=5,name=A] };
+            \graph[clockwise, radius=1.5cm] {subgraph I_n [n=5,name=B] };
 
-        % Define edge colors for the graph
-        \draw[yellow, line width=1.3pt] (A 1) -- (B 1);
-        \draw[blue, line width=1.3pt] (A 2) -- (B 2);
-        \draw[green, line width=1.3pt] (A 3) -- (B 3);
-        \draw[red, line width=1.3pt] (A 4) -- (B 4);
-        \draw[cyan, line width=1.3pt] (A 5) -- (B 5);
-        \draw[red, line width=1.3pt] (A 1) -- (A 2);
-        \draw[cyan, line width=1.3pt] (A 2) -- (A 3);
-        \draw[yellow, line width=1.3pt] (A 3) -- (A 4);
-        \draw[blue, line width=1.3pt] (A 4) -- (A 5);
-        \draw[green, line width=1.3pt] (A 5) -- (A 1);
-        \draw[yellow, line width=1.3pt] (B 5) -- (B 2);
-        \draw[cyan, line width=1.3pt] (B 4) -- (B 1);
-        \draw[blue, line width=1.3pt] (B 3) -- (B 1);
-        \draw[red, line width=1.3pt] (B 5) -- (B 3);
-        \draw[green, line width=1.3pt] (B 4) -- (B 2);
-    \end{tikzpicture}\\
-\end{center}
-We can see that for the Petersen graph (which is 3-regular) we can find an appropriate coloring with 5 colors so $X'_{rn} \leq 5 \leq 2 \cdot 3 - 1 = 5$. This shows that the conjecture holds for this graph.
-\end{primer}\\
-\textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
-\pagebreak
+            % Define edge colors for the graph
+            \draw[yellow, line width=1.3pt] (A 1) -- (B 1);
+            \draw[blue, line width=1.3pt] (A 2) -- (B 2);
+            \draw[green, line width=1.3pt] (A 3) -- (B 3);
+            \draw[red, line width=1.3pt] (A 4) -- (B 4);
+            \draw[cyan, line width=1.3pt] (A 5) -- (B 5);
+            \draw[red, line width=1.3pt] (A 1) -- (A 2);
+            \draw[cyan, line width=1.3pt] (A 2) -- (A 3);
+            \draw[yellow, line width=1.3pt] (A 3) -- (A 4);
+            \draw[blue, line width=1.3pt] (A 4) -- (A 5);
+            \draw[green, line width=1.3pt] (A 5) -- (A 1);
+            \draw[yellow, line width=1.3pt] (B 5) -- (B 2);
+            \draw[cyan, line width=1.3pt] (B 4) -- (B 1);
+            \draw[blue, line width=1.3pt] (B 3) -- (B 1);
+            \draw[red, line width=1.3pt] (B 5) -- (B 3);
+            \draw[green, line width=1.3pt] (B 4) -- (B 2);
+        \end{tikzpicture}\\
+    \end{center}
+    We can see that for the Petersen graph (which is 3-regular) we can find an appropriate coloring with 5 colors so $X'_{rn} \leq 5 \leq 2 \cdot 3 - 1 = 5$. This shows that the conjecture holds for this graph.
+    \end{primer}\\
+    \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
+    \pagebreak
 
 %\section{Plan}
 
 %Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 or more (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
 
-\section{Generating Graphs}
 
 \section{Algorithms}
-\subsection{Integer Programming}
+    \subsection{Integer Programming}
 
-Using SageMath we constructed an integer programming model that finds a rich-neighbor edge coloring for a given graph. Our interger program looks like this:\\
+        Using SageMath we constructed an integer programming model that finds a rich-neighbor edge coloring for a given graph. Our interger program looks like this:\\
 
-minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
+        minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
 
-subject to $\forall e: \quad \sum_{i=1}^{k} x_{ei} = 1$ \hfill \textcolor{gray}{each edge is exactly one color}\\
+        subject to $\forall e: \quad \sum_{i=1}^{k} x_{ei} = 1$ \hfill \textcolor{gray}{each edge is exactly one color}\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
-\textcolor{white}{hihi} \hfill \textcolor{gray}{edges with the same vertex are a different color}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
+        \textcolor{white}{hihi} \hfill \textcolor{gray}{edges with the same vertex are a different color}\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \textcolor{gray}{we use less or equal to $t$ colors}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \textcolor{gray}{we use less or equal to $t$ colors}\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w: \quad x_{uw, i} + x_{vz, i} + y_{uv} \leq 2$ \hfill \\[0.1mm]
-\textcolor{white}{hihi} \hfill \textcolor{gray}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w: \quad x_{uw, i} + x_{vz, i} + y_{uv} \leq 2$ \hfill \\[0.1mm]
+        \textcolor{white}{hihi} \hfill \textcolor{gray}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \textcolor{gray}{every edge is adjacent to some rich edge}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \textcolor{gray}{every edge is adjacent to some rich edge}\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \textcolor{gray}{we use $\geq 2 \Delta - 1$ colors}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \textcolor{gray}{we use $\geq 2 \Delta - 1$ colors}\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
 
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
 
-where
-\begin{align*}        x_{ei} = \begin{cases}
-            1, \  \text{if edge $e$ has color $i$} \\
-            0, \  \text{otherwise}
-    \end{cases} & \text{and} & 
-    y_{e} = \begin{cases}
-        1, \  \text{if edge $e$ is rich} \\
-        0, \  \text{otherwise.}
-    \end{cases}
-\end{align*}\\
+        where
+        \begin{align*}        x_{ei} = \begin{cases}
+                    1, \  \text{if edge $e$ has color $i$} \\
+                    0, \  \text{otherwise}
+            \end{cases} & \text{and} & 
+            y_{e} = \begin{cases}
+                1, \  \text{if edge $e$ is rich} \\
+                0, \  \text{otherwise.}
+            \end{cases}
+        \end{align*}\\
 
-We only looked for appropriate graph colorings with $\geq 2 \Delta - 1$ colors because, if we find a coloring with $2 \Delta - 1$ colors then the smallest possible number of colors also satisfies the conjecture for that graph. If we need more than $2 \Delta - 1$ colors then the conjecture does not hold. The computation is also a lot quicker this way.\\
+        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$, since the coloring can't be made with less colors (Every edge has $2 \Delta - 1$ neighboring edges), and only look if the program has a solution that satisfies all the constraints. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
 
-\subsection{Iterative Algorithm}
 
-%Next we determined at what point the computation of rich-neighbor edge coloring becomes too intense for this technique. By running the programme on a server we saw this to be at $k$-regular graphs on $n$ vertices and we will switch to the random search algorythm.
-\pagebreak
+    \begin{algorithm}
+        \caption{richNeighbor}\label{algo:richNeighbor}
+        \LinesNumbered
+        \DontPrintSemicolon
+        \SetAlgoNlRelativeSize{0}
+        \SetAlgoNlRelativeSize{-1}
+        \SetAlgoNlRelativeSize{1}
+        \SetKwInput{KwInput}{Input}
+        \SetKwInput{KwOutput}{Output}
+
+        \SetKwFunction{FMain}{richNeighbor}
+
+        \KwInput{Graph $G$}
+        \KwOutput{Colors $colors$, Rich edges $richEdges$}
+
+        $p \gets$ MixedIntegerLinearProgram(maximization = False)\;
+        $x \gets p.new\_variable(binary = True)$\;
+        $y \gets p.new\_variable(binary = True)$\;
+        $t \gets p.new\_variable(integer = True)$\;
+        $p.set\_objective(t[0])$\;
+
+        $\text{maxCol} \gets 2 \cdot G.degree()[0] - 1$\;
+
+        $p.add\_constraint(t[0] \geq \text{maxCol})$\;
+
+        \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
+            $p.add\_constraint(\sum_{i=1}^{\text{maxCol}} x[\text{Set}(e), i] = 1)$\;
+        }
+
+        \For{$(u,v)$ in $G.edges(\text{labels} = \text{False})$}{
+            $p.add\_constraint(\sum_{j \in G[u]} y[\text{Set}((u, j))] + \sum_{l \in G[v]} y[\text{Set}((l, v))] - 2y[\text{Set}((u, v))] \geq 1)$\;
+        }
+
+        \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
+            \For{$i$ in $1$ to $\text{maxCol}$}{
+                $p.add\_constraint(i \cdot x[\text{Set}(e), i] \leq t[0])$\;
+            }
+        }
+
+        \For{$i$ in $1$ to $\text{maxCol}$}{
+            \For{$(u,v)$ in $G.edges(\text{labels} = \text{False})$}{
+                \For{$w$ in $G[u]$}{
+                    \If{$w = v$}{
+                        \textbf{continue}\;
+                    }
+                    $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((u, w)), i] \leq 1)$\;
+                }
+                \For{$z$ in $G[v]$}{
+                    \If{$z = u$}{
+                        \textbf{continue}\;
+                    }
+                    $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((v, z)), i] \leq 1)$\;
+                }
+            }
+        }
+
+        \For{$(u, v)$ in $G.edges(\text{labels}=False)$}{
+            \For{$w$ in $G.neighbors(u)$}{
+                \For{$z$ in $G.neighbors(v)$}{
+                    \If{$w = v$ or $z = u$}{
+                        \textbf{continue}\;
+                    }
+                    \For{$i$ in $1$ to $\text{maxCol}$}{
+                        $p.add\_constraint(x[\text{Set}((u, w)), i] + x[\text{Set}((v, z)), i] + y[\text{Set}((u, v))] \leq 2)$\;
+                    }
+                }
+            }
+        }
+
+        %\Try{
+        %    $p.solve()$\;
+        %    $colors \gets p.get\_values(x)$\;
+        %    $richEdges \gets p.get\_values(y)$\;
+        %}
+        %\Catch{ValueError}{
+        %    $\text{print}(\text{f'BINGO! The graph }{G}\text{ doesn't have a rich-neighbor edge coloring! \n' + f'Edges: }{G.edges()} \text{; \n' + f'Adjacency matrix: }{G.adjacency\_matrix()} \text{; \n' + f'Neighbors: }{G.neighbors()})$\;
+        %    \Return \text{False, False}\;
+        %}
+        %
+        \Return $colors$, $richEdges$\;
+        \end{algorithm}
+
+    \subsection{Iterative Algorithm}
+            
+            We also implemented an iterative algorithm that finds a rich-neighbor edge coloring for a given graph. The algorithm works by assigning a color to an edge and then checking if the coloring is valid. If it is, we move on to the next edge, otherwise we try a different color. If we can't find a valid coloring with $2 \Delta - 1$ colors, we increase the number of colors by one and try again.\\
+    
+            The algorithm is not guaranteed to find a coloring with $2 \Delta - 1$ colors, but it is guaranteed to find a coloring with $2 \Delta$ colors.\\
+    
+            The algorithm is very fast for small graphs, but it becomes too slow for graphs with more than 10 vertices. Ta tekst so smeti ma tle bi pc mogli mal blefirat da je iterativn algoritm pocasnejsi od ILPja.\\
 
 \section{Complete search}
+    Since the number of k-regular graphs on n verices increases exponentially with n, we can't check all of them. We can however check all of them for small values of n. 
+
+    \subsection{Graph generation}
+        In this part of the project we would like to thatn professor Riste Škrekovski for providing us with access to multiple servers and supercomputers across Slovenia, where we ran our files. 
 
 \section{Random Search}
+    Along with testing the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. Since we can't even begin to check even all for exmaple $20$-regular graphs on $100$ vertices, a random search algorytm seemed as a natural continuation of our problem. And since the we aren't looking for an optimum solution (anything more than the minimum $2 \Delta - 1$ disproves the conjecture), we opted for a modification approach. We start with a random graph, check if the conjecture holds, and then 
+    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a small probability that we generate a completely new random graph and start again. 
+
+    \begin{algorithm}
+        \caption{tweak}\label{algo:tweakGraph}
+        \LinesNumbered
+        \DontPrintSemicolon
+        \SetAlgoNlRelativeSize{0}
+        \SetAlgoNlRelativeSize{-1}
+        \SetAlgoNlRelativeSize{1}
+        \SetKwInput{KwInput}{Input}
+        \SetKwInput{KwOutput}{Output}
+        
+        \SetKwFunction{FTweakGraph}{tweakGraph}
+        
+        \KwInput{Graph $G$}
+        \KwOutput{Tweaked graph $T$}
+        
+
+            $T \gets \text{graph.copy()}$\;
+            
+            $e_1 \gets T.\text{random\_edge()}$\;
+            $u_1, v_1, \text{extra}_1 \gets e_1$\;
+            $T.\text{delete\_edge}(e_1)$\;
+            
+            $e_2 \gets T.\text{random\_edge()}$\;
+            $u_2, v_2, \text{extra}_2 \gets e_2$\;
+            $T.\text{delete\_edge}(e_2)$\;
+        
+            $p \gets \text{random}()$\;
+            \If{$p < 0.5$}{
+                $T.\text{add\_edge}(u_1, u_2)$\;
+                $T.\text{add\_edge}(v_1, v_2)$\;
+            }\Else{
+                $T.\text{add\_edge}(u_1, v_2)$\;
+                $T.\text{add\_edge}(v_1, u_2)$\;
+            }
+            
+            \If{not $T.\text{is\_connected}()$}{
+                \Return \text{tweakGraph}(\text{graph})\;
+            }
+            
+            \Return $T$\;
+        
+        
+        \end{algorithm}
+
+    
+
+    \subsection{Graph generation}
+        Since we only need one graph to start our iterative process, we can generate it randomly using the built in sage function \texttt{graphs.RandomRegular}.
+
 
 \section{Findings}
 
 \section{Conclusion}
 
-%We will construct a random search algorythm that will check if the conjecture holds for a class of graphs that are too large to be checked individually.
+
 
 \end{document}
