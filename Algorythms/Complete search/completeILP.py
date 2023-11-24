@@ -1,6 +1,3 @@
-from __future__ import print_function
-from multiprocessing.dummy.connection import families
-import sys
 from sage.all import *
 from random import *
 import time
@@ -11,7 +8,6 @@ import time
 
 def rnec(G):
     """
-    ILP: G -> bool
     True if G satisfies the Rich-neighbor edge coloring conjecture,
     False otherwise.
     """	
@@ -63,8 +59,10 @@ def rnec(G):
                 for i in range(1, maxCol + 1):
                     p.add_constraint(x[Set((u, w)), i] + x[Set((v, z)), i] + y[Set((u, v))] <= 2)
     
+    st = time.time()
     p.solve()
     rest = p.get_values(t)
+    saveInfo('individualTimes.txt', str(time.time() - st), f'{G.order()} {G.degree()[0]}')
     
     # The program returnes True, if the coloring satisfies the conjecture and False, if not
     return rest[0] <= maxCol
@@ -72,7 +70,6 @@ def rnec(G):
 
 def cgraphs(N, K):
     """
-    N, K -> None
     Checks all K-regular graphs on N vertices if they
     satisfy the Rich-neighbor edge coloring conjecture.
     """
@@ -86,18 +83,30 @@ def cgraphs(N, K):
     print(f'All {K} regular graphs on {N} vertices satisfy our conjecture.')
 
 
+def saveInfo(info, file, mark=''):
+    """
+    Writes the output of the program to a .txt file.
+    """
+    file = open(f'{file}', 'a')
+    file.write(mark + info + '\n')
+    file.close()
+
+
 def checkAll(N):
     """
-    N -> None
     Checks all regular graphs up to N vertices if they satisfy the
     Rich-neighbor edge coloring conjecture.
     """
+    t = [[0 for i in range(N + 1)] for j in range(N + 1)]
     for n in range(4, N + 1):
         for k in range(4, n):
+            st = time.time()
             cgraphs(n, k)
+            saveInfo('classTimes.txt', str(time.time() - st), f'{n} {k}')
 
 
-########################################################################################
-#                           COMPLETE SEARCH; ITERATIVE APPROACH                        #
-########################################################################################
+N = 10000
+checkAll(N)
+
+
 
