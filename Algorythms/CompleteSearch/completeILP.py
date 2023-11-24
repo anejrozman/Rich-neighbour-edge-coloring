@@ -6,7 +6,7 @@ import sys
 #                           COMPLETE SEARCH USING ILP                                  #
 ########################################################################################
 
-def rnec(G):
+def richNeighbor(G):
     """
     ILP checks if G satisfies the Rich-neighbor edge coloring conjecture
     """	
@@ -21,7 +21,8 @@ def rnec(G):
     maxCol = 2*G.degree()[0] - 1
     
     # Add constraints
-    # We are not interested in the smallest possible number of colors, it is only important to satisfy the conjecture
+    # We are not interested in the smallest possible number of colors, 
+    # it is only important to satisfy the conjecture
     p.add_constraint(t[0] >= maxCol)
     
     # Each edge is colored exactly one color
@@ -30,9 +31,12 @@ def rnec(G):
         
     # Each edge e has at least one neighboring edge that is rich 
     for u,v in G.edges(labels = False):
-        p.add_constraint(sum([y[Set((u, j))] for j in G[u]]) + sum([y[Set((l, v))] for l in G[v]]) - 2*y[Set((u, v))] >= 1)
+        p.add_constraint(sum([y[Set((u, j))] for j in G[u]]) + 
+                         sum([y[Set((l, v))] for l in G[v]]) - 
+                         2*y[Set((u, v))] >= 1)
         
-    # Variable t (which respresents the number of colors used) has a lower bound of the smallest color
+    # Variable t (which respresents the number of colors used) 
+    # has a lower bound of the smallest color
     for e in G.edges(labels = False):
         for i in range(1, maxCol + 1):
             p.add_constraint(i * x[Set(e), i] <= t[0])
@@ -43,11 +47,13 @@ def rnec(G):
             for w in G[u]:
                 if w == v:
                     continue
-                p.add_constraint(x[Set((u, v)), i] + x[Set((u, w)), i] <= 1)
+                p.add_constraint(x[Set((u, v)), i] + 
+                                 x[Set((u, w)), i] <= 1)
             for z in G[v]:
                 if z == u:
                     continue
-                p.add_constraint(x[Set((u, v)), i] + x[Set((v, z)), i] <= 1)
+                p.add_constraint(x[Set((u, v)), i] + 
+                                 x[Set((v, z)), i] <= 1)
                 
     # If an edge e is rich, then the neighboring vertices have to be differnet colors
     for u, v in G.edges(labels=False):
@@ -56,7 +62,9 @@ def rnec(G):
                 if w == v or z == u:
                     continue
                 for i in range(1, maxCol + 1):
-                    p.add_constraint(x[Set((u, w)), i] + x[Set((v, z)), i] + y[Set((u, v))] <= 2)
+                    p.add_constraint(x[Set((u, w)), i] + 
+                                     x[Set((v, z)), i] + 
+                                     y[Set((u, v))] <= 2)
     try: 
         p.solve()
         colors = p.get_values(x)
@@ -69,7 +77,7 @@ def rnec(G):
         return False, False
     return colors, richEdges
 
-
+#--------------------------------------------------------------------------------------#
 
 def checkColoring(G, coloring, richEdges):
     """
@@ -99,8 +107,10 @@ def checkColoring(G, coloring, richEdges):
         if S == 0:
             return False
     return True 
+
+#--------------------------------------------------------------------------------------#	
                 
-c = 1
+c = 0
 for graph in sys.stdin:
         c += 1
         if c % 1000 == 0:
@@ -109,7 +119,7 @@ for graph in sys.stdin:
         G = Graph(graph)
         
         # Run ILP
-        colors, richEdges = rnec(G)
+        colors, richEdges = richNeighbor(G)
         if colors == False:
             continue
 
