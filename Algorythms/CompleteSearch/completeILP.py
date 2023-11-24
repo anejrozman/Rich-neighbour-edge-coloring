@@ -1,6 +1,6 @@
 from sage.all import *
 from random import *
-import time
+import sys
 
 ########################################################################################
 #                           COMPLETE SEARCH USING ILP                                  #
@@ -8,8 +8,7 @@ import time
 
 def rnec(G):
     """
-    True if G satisfies the Rich-neighbor edge coloring conjecture,
-    False otherwise.
+    ILP checks if G satisfies the Rich-neighbor edge coloring conjecture
     """	
     # Set variables and objective function
     p = MixedIntegerLinearProgram(maximization = False)
@@ -58,55 +57,72 @@ def rnec(G):
                     continue
                 for i in range(1, maxCol + 1):
                     p.add_constraint(x[Set((u, w)), i] + x[Set((v, z)), i] + y[Set((u, v))] <= 2)
-    
-    st = time.time()
-    p.solve()
-    rest = p.get_values(t)
-    saveInfo('individualTimes.txt', str(time.time() - st), f'{G.order()} {G.degree()[0]}')
-    
-    # The program returnes True, if the coloring satisfies the conjecture and False, if not
-    return rest[0] <= maxCol
+    try: 
+        p.solve()
+        colors = p.get_values(x)
+        richEdges = p.get_values(y)
+    except ValueError:
+        print(f'BINGO! The graph {G} doesnt have a rich-neighbor edge coloring! \n' +
+              f'Edges:{G.edges()}; \n' + 
+              f'Adjacency matix: {G.adjacency_matrix()}; \n'
+              f'Neighbors: {G.neighbors()}')  
+        return False, False
+    return colors, richEdges
 
 
-def cgraphs(N, K):
+
+def checkColoring(G, coloring, richEdges):
     """
-    Checks all K-regular graphs on N vertices if they
-    satisfy the Rich-neighbor edge coloring conjecture.
+    Checks if the coloring of the graph is a rich-neighbor edge coloring.
     """
-    gen = graphs.nauty_geng(f'{N} -d{K} -D{K}')
-    if not gen:
-        print(f'No {K} regular graphs on {N} vertices exist.')
-    for G in gen:
-        if not rnec(G):
-            print(f'The graph {G} doesnt have a rich-neighbor edge coloring! Hooray!')
-            break
-    print(f'All {K} regular graphs on {N} vertices satisfy our conjecture.')
+    # Check if the coloring is valid
+    for v in G.vertices():
+        col = set()
+        for w in G.neighbors(v):
+            for i in range(1, 2*G.degree()[0]):
+                if coloring[(Set((v, w)), i)] == 1:
+                    col.add(i)
+        if len(col) != len(G.neighbors(v)):
+            return False
+        
+    # Check for richness
+    for u, v in G.edges(labels = False):
+        S = 0
+        for w in G.neighbors(u):
+            if w == v:
+                continue
+            S += richEdges[Set((u, w))]
+        for z in G.neighbors(v):
+            if z == u:
+                continue
+            S += richEdges[Set((v, z))]
+        if S == 0:
+            return False
+    return True 
+                
+c = 1
+for graph in sys.stdin:
+        c += 1
+        if c % 1000 == 0:
+            print(f'Graphs checked so far: {c}')
+
+        G = Graph(graph)
+        
+        # Run ILP
+        colors, richEdges = rnec(G)
+        if colors == False:
+            continue
+
+        # Check if the coloring is valid
+        if c % 100 == 0:
+            if not checkColoring(G, colors, richEdges):
+                print('ILP failed to find a valid coloring! \n' +
+                      f'Edges:{G.edges()}; \n' + 
+                      f'Adjacency matix: {G.adjacency_matrix()}; \n'
+                      f'Neighbors: {G.neighbors()}')
+        
 
 
-def saveInfo(info, file, mark=''):
-    """
-    Writes the output of the program to a .txt file.
-    """
-    file = open(f'{file}', 'a')
-    file.write(mark + info + '\n')
-    file.close()
-
-
-def checkAll(N):
-    """
-    Checks all regular graphs up to N vertices if they satisfy the
-    Rich-neighbor edge coloring conjecture.
-    """
-    t = [[0 for i in range(N + 1)] for j in range(N + 1)]
-    for n in range(4, N + 1):
-        for k in range(4, n):
-            st = time.time()
-            cgraphs(n, k)
-            saveInfo('classTimes.txt', str(time.time() - st), f'{n} {k}')
-
-
-N = 10000
-checkAll(N)
 
 
 
