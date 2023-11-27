@@ -126,13 +126,21 @@ def tweak(graph):
     # Add two new edges while maintaining k-regularity
     p = random()
     if p < 0.5:
-        G.add_edge(u1, u2)
-        G.add_edge(v1, v2)
+        try:
+            G.add_edge(u1, u2)
+            G.add_edge(v1, v2)
+        except ValueError:
+            pass
     else:
-        G.add_edge(u1, v2)
-        G.add_edge(v1, u2)
+        try:
+            G.add_edge(u1, v2)
+            G.add_edge(v1, u2)
+        except ValueError:
+            pass
     
     if not G.is_connected():
+        return tweak(graph)
+    if not G.is_regular():
         return tweak(graph)
     return G
 
