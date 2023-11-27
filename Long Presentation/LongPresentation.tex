@@ -190,6 +190,8 @@ Ljubljana, \letnica}
             \end{cases}
         \end{align*}\\
 
+
+        %js bi rekla da ne fiksiramo st barv in vsaka povezava ma 2delta -2 sosednjih povezav, ampak sklep pa drzi kr pac se to povezavo stejemo da more bit svoje barve
         In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$, since the coloring can't be made with less colors (Every edge has $2 \Delta - 1$ neighboring edges), and only look if the program has a solution that satisfies all the constraints. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
 
 
@@ -287,10 +289,10 @@ Ljubljana, \letnica}
     Since the number of k-regular graphs on n verices increases exponentially with n, we can't check all of them. We can however check all of them for small values of n. 
 
     \subsection{Graph generation}
-        In this part of the project we would like to thatn professor Riste Škrekovski for providing us with access to multiple servers and supercomputers across Slovenia, where we ran our files. 
+        In this part of the project we would like to thank professor Riste Škrekovski for providing us with access to multiple servers and supercomputers across Slovenia, where we ran our files. 
 
 \section{Random Search}
-    Along with testing the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. Since we can't even begin to check even all for exmaple $20$-regular graphs on $100$ vertices, a random search algorytm seemed as a natural continuation of our problem. And since the we aren't looking for an optimum solution (anything more than the minimum $2 \Delta - 1$ disproves the conjecture), we opted for a modification approach. We start with a random graph, check if the conjecture holds, and then 
+    Along with testing the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. Since we can't even begin to check all for exmaple $20$-regular graphs on $100$ vertices, a random search algorytm seemed as a natural continuation of our problem. And since the we aren't looking for an optimum solution (anything more than the minimum $2 \Delta - 1$ disproves the conjecture), we opted for a modification approach. We start with a random graph, check if the conjecture holds, and then 
     modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a small probability that we generate a completely new random graph and start again. 
 
     \begin{algorithm}
