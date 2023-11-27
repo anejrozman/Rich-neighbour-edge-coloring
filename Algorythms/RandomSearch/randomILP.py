@@ -99,7 +99,7 @@ def richNeighbor(G):
         colors = p.get_values(x)
         richEdges = p.get_values(y)
     except ValueError:
-        print(f'BINGO! The graph {G} doesnt have a rich-neighbor edge coloring! \n' +
+        print(f'BINGO! The graph doesnt have a rich-neighbor edge coloring! \n' +
               f'Edges:{G.edges()}; \n' + 
               f'Adjacency matix: {G.adjacency_matrix()}; \n'
               f'Neighbors: {G.neighbors()}')  
