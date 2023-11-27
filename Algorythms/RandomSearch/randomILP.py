@@ -146,9 +146,9 @@ def tweak(graph):
 
 #--------------------------------------------------------------------------------------#
 
-def checkColoring(G, coloring, richEdges):
+def checkColoring(G, coloring):
     """
-    Checks if the coloring of the graph is a rich-neighbor edge coloring.
+    Checks if the coloring of the graph is a proper coloring.
     """
     # Check if the coloring is valid
     for v in G.vertices():
@@ -159,7 +159,14 @@ def checkColoring(G, coloring, richEdges):
                     col.add(i)
         if len(col) != len(G.neighbors(v)):
             return False
-        
+    return True
+
+#--------------------------------------------------------------------------------------#
+
+def checkRichness(G, richEdges):
+    """
+    Checks if the coloring of the graph is a rich-neighbor edge coloring.
+    """
     # Check for richness
     for u, v in G.edges(labels = False):
         S = 0
@@ -195,7 +202,7 @@ while True:
 
     # Check if the coloring is valid
     if c % 100 == 0:
-        if not checkColoring(G, colors, richEdges):
+        if not checkColoring(G, colors) or not checkRichness(G, richEdges):
             print('ILP failed to find a valid coloring! \n' +
                   f'Edges:{G.edges()}; \n' + 
                   f'Adjacency matix: {G.adjacency_matrix()}; \n'
