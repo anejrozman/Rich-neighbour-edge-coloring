@@ -120,6 +120,8 @@ for graph in sys.stdin:
         
         # Run ILP
         colors, richEdges = richNeighbor(G)
+        if c == 0: # Potrdilo da skripta deluje
+            print('First graph checked!')
         if colors == False:
             continue
 

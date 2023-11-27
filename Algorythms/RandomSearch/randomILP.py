@@ -8,7 +8,7 @@ import sys
 
 # Access command-line arguments
 if len(sys.argv) != 3:
-    print("Usage: python3 randomILP.py N K")
+    print("Usage: sage randomILP.py N K")
     sys.exit(1)
 
 # Extract N and K from command-line arguments
