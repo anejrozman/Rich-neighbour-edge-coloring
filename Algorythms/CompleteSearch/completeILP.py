@@ -92,7 +92,7 @@ def checkColoring(G, coloring, richEdges):
                     col.add(i)
         if len(col) != len(G.neighbors(v)):
             return False
-        
+
     # Check for richness
     for u, v in G.edges(labels = False):
         S = 0
@@ -109,11 +109,11 @@ def checkColoring(G, coloring, richEdges):
     return True 
 
 #--------------------------------------------------------------------------------------#	
-                
+  
 c = 0
 for graph in sys.stdin:
         c += 1
-        if c % 1000 == 0:
+        if c % 100 == 0:
             print(f'Graphs checked so far: {c}')
 
         G = Graph(graph)
@@ -130,7 +130,6 @@ for graph in sys.stdin:
                       f'Edges:{G.edges()}; \n' + 
                       f'Adjacency matix: {G.adjacency_matrix()}; \n'
                       f'Neighbors: {G.neighbors()}')
-        
 
 
 

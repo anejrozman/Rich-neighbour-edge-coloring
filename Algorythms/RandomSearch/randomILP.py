@@ -28,9 +28,9 @@ def generateGraph(N, K):
     """
     Generates a connected random K-regular graph with N vertices.
     """
-    G = RandomRegular(K, N)
+    G = graphs.RandomRegular(K, N)
     while not G.is_connected():
-        G = RandomRegular(K, N)
+        G = graphs.RandomRegular(K, N)
     return G
 
 #--------------------------------------------------------------------------------------#
