@@ -184,6 +184,7 @@ def checkRichness(G, richEdges):
 
 #--------------------------------------------------------------------------------------#
 
+print('start')
 # Generate a random graph
 G = generateGraph(N, K)
 
@@ -191,7 +192,7 @@ G = generateGraph(N, K)
 c = 0
 while True: 
     c += 1
-    if c % 1000 == 0:
+    if c % 10 == 0:
         print(f'Number of iterations:{c}')
 
     # Run ILP
@@ -213,5 +214,6 @@ while True:
 
     if random() < 0.1/N:
         G = generateGraph(N, K)
-    
+
+  
 

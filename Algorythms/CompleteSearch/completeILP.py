@@ -117,10 +117,11 @@ def checkRichness(G, richEdges):
 
 #--------------------------------------------------------------------------------------#	
   
+print('start')
 c = 0
 for graph in sys.stdin:
         c += 1
-        if c % 100 == 0:
+        if c % 10 == 0:
             print(f'Graphs checked so far: {c}')
 
         G = Graph(graph)
@@ -140,6 +141,7 @@ for graph in sys.stdin:
                       f'Adjacency matix: {G.adjacency_matrix()}; \n'
                       f'Neighbors: {G.neighbors()}')
 
+print("done") 
 
 
 
