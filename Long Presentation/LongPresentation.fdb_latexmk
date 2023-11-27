@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1701069239 "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1701069243
+["pdflatex"] 1701103360 "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1701103363
   "C:/Users/38651/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1636382073 9726367 c86c2a9804d7592c617a691d30e1597c ""
   "C:/Users/38651/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1700860070 123357 28e027cbdbbaf14773e0974241f40532 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -147,12 +147,12 @@
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1622546726 4545 d84d0b20a11b9c36c6ecf45697be591c ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1636284872 56029 3f7889dab51d620aa43177c391b7b190 ""
-  "LongPresentation.aux" 1701069242 1762 171afba9307939734ad9cbe40e5258e1 "pdflatex"
-  "LongPresentation.tex" 1701069230 15428 89e4b5b12905525f6a177287ad73c302 ""
-  "LongPresentation.toc" 1701069242 710 100e56e818b92f3555bff24f53a3e57c "pdflatex"
-  "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" 1701069230 15428 89e4b5b12905525f6a177287ad73c302 ""
+  "LongPresentation.aux" 1701103363 1864 432298175f69732e872b6c4e766b03ca "pdflatex"
+  "LongPresentation.tex" 1701103358 15800 40a2caed60deaf91cc91bfe8f7833f54 ""
+  "LongPresentation.toc" 1701103363 771 4757125899491a4bab4964c0bef209fb "pdflatex"
+  "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" 1701103358 15800 40a2caed60deaf91cc91bfe8f7833f54 ""
   (generated)
-  "LongPresentation.aux"
   "LongPresentation.toc"
-  "LongPresentation.pdf"
   "LongPresentation.log"
+  "LongPresentation.aux"
+  "LongPresentation.pdf"

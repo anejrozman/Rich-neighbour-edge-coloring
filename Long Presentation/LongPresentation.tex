@@ -288,13 +288,17 @@ Ljubljana, \letnica}
 \section{Complete search}
     Since the number of k-regular graphs on n verices increases exponentially with n, we can't check all of them. We can however check all of them for small values of n. 
 
+    Magari vkluci se tabelo ki kaze kako hitro raste stevilo vseh povezanih grafov na n vozlih.
+    Nasploh pa mal raztegni besedilo.
+
     \subsection{Graph generation}
-        In this part of the project we would like to thank professor Riste Škrekovski for providing us with access to multiple servers and supercomputers across Slovenia, where we ran our files. 
+        Na dolgo, povej da je riste dal njegove .txt datoteke kjer so vsi k-regularni grafi na n-vozliscih. 
 
 \section{Random Search}
     Along with testing the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. Since we can't even begin to check all for exmaple $20$-regular graphs on $100$ vertices, a random search algorytm seemed as a natural continuation of our problem. And since the we aren't looking for an optimum solution (anything more than the minimum $2 \Delta - 1$ disproves the conjecture), we opted for a modification approach. We start with a random graph, check if the conjecture holds, and then 
-    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a small probability that we generate a completely new random graph and start again. 
+    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a small probability that we generate a completely new random graph and start again.  Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
 
+    Opisi algoritem
     \begin{algorithm}
         \caption{tweak}\label{algo:tweakGraph}
         \LinesNumbered
@@ -344,6 +348,8 @@ Ljubljana, \letnica}
     \subsection{Graph generation}
         Since we only need one graph to start our iterative process, we can generate it randomly using the built in sage function \texttt{graphs.RandomRegular}.
 
+\section{Preventiva}
+tukej daj algoritma chack coloring in check richness. Ostalo bom js napisu
 
 \section{Findings}
 
