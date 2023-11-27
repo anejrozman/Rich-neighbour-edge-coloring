@@ -116,7 +116,6 @@ def tweak(graph):
     
     # Remove two random edges 
     e1 = G.random_edge()
-    print(e1)
     u1, v1, extra1 = e1
     G.delete_edge(e1)
     
