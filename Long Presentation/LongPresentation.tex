@@ -12,6 +12,8 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{geometry}
+\usepackage{array}
 
 
 \usetikzlibrary{graphs}
@@ -149,31 +151,27 @@ Ljubljana, \letnica}
     \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
     \pagebreak
 
-%\section{Plan}
-
-%Our plan is to create an integer program that ``proves'' the conjecture for (small) regular graphs of degree 4 or more (it finds a rich-neighbor edge coloring for every $k$-regular graph on $n$ verticies) and to make a random search algorythm for checking classes of graphs that are too large to be checked individually.
-
 
 \section{Algorithms}
     \subsection{Integer Programming}
 
         Using SageMath we constructed an integer programming model that finds a rich-neighbor edge coloring for a given graph. Our interger program looks like this:\\
 
-        minimize $t$ \hfill \textcolor{gray}{we minimize the number of colors we need}\\
-
-        subject to $\forall e: \quad \sum_{i=1}^{k} x_{ei} = 1$ \hfill \textcolor{gray}{each edge is exactly one color}\\
+        minimize $t$ \hfill \footnotesize{\textcolor{black}{we minimize the number of colors we need}}\\
+        %vsoto sm dala do 2delta - 1 prej je bla do k a je to kul???
+        subject to $\forall e: \quad \sum_{i=1}^{2\Delta - 1} x_{ei} = 1$ \hfill \footnotesize{\textcolor{black}{each edge is exactly one color}}\\
 
         \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
-        \textcolor{white}{hihi} \hfill \textcolor{gray}{edges with the same vertex are a different color}\\
+        \textcolor{white}{hihi} \hfill \footnotesize{\textcolor{black}{edges with the same vertex are a different color}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \textcolor{gray}{we use less or equal to $t$ colors}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \footnotesize{\textcolor{black}{we use less or equal to $t$ colors}}\\
 
         \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w: \quad x_{uw, i} + x_{vz, i} + y_{uv} \leq 2$ \hfill \\[0.1mm]
-        \textcolor{white}{hihi} \hfill \textcolor{gray}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}\\
+        \textcolor{white}{hihi} \hfill \footnotesize{\textcolor{black}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \textcolor{gray}{every edge is adjacent to some rich edge}\\
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \footnotesize{\textcolor{black}{every edge is adjacent to some rich edge}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \textcolor{gray}{we use $\geq 2 \Delta - 1$ colors}\\
+        %\ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \footnotesize{\textcolor{black}{we use $\geq 2 \Delta - 1$ colors}}\\
 
         \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
 
@@ -192,101 +190,126 @@ Ljubljana, \letnica}
 
 
         %js bi rekla da ne fiksiramo st barv in vsaka povezava ma 2delta -2 sosednjih povezav, ampak sklep pa drzi kr pac se to povezavo stejemo da more bit svoje barve
-        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$, since the coloring can't be made with less colors (Every edge has $2 \Delta - 1$ neighboring edges), and only look if the program has a solution that satisfies all the constraints. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
+        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$, since the coloring can't be made with less colors (every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color) and any more colors do not satisfie the conjecture. Therefore we only check if the program has a solution that satisfies all the constraints and the conjecture. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
 
+        Our implementation of the IPL is demonstrated in the following code.
+        \begin{algorithm}[!htbp]
+            \caption{richNeighbor}\label{algo:richNeighbor}
+            \LinesNumberedHidden
+            \DontPrintSemicolon
+            \SetAlgoNlRelativeSize{0}
+            \SetAlgoNlRelativeSize{-1}
+            \SetAlgoNlRelativeSize{1}
+            \SetKwInput{KwInput}{Input}
+            \SetKwInput{KwOutput}{Output}
 
-    \begin{algorithm}
-        \caption{richNeighbor}\label{algo:richNeighbor}
-        \LinesNumbered
-        \DontPrintSemicolon
-        \SetAlgoNlRelativeSize{0}
-        \SetAlgoNlRelativeSize{-1}
-        \SetAlgoNlRelativeSize{1}
-        \SetKwInput{KwInput}{Input}
-        \SetKwInput{KwOutput}{Output}
+            \SetKwFunction{FMain}{richNeighbor}
 
-        \SetKwFunction{FMain}{richNeighbor}
+            \KwInput{Graph $G$}
+            \KwOutput{Colors $colors$, Rich edges $richEdges$}
 
-        \KwInput{Graph $G$}
-        \KwOutput{Colors $colors$, Rich edges $richEdges$}
+            $p \gets$ MixedIntegerLinearProgram(maximization = False)\;
+            $x \gets p.new\_variable(binary = True)$\;
+            $y \gets p.new\_variable(binary = True)$\;
+            $t \gets p.new\_variable(integer = True)$\;
+            $p.set\_objective(t[0])$\;
 
-        $p \gets$ MixedIntegerLinearProgram(maximization = False)\;
-        $x \gets p.new\_variable(binary = True)$\;
-        $y \gets p.new\_variable(binary = True)$\;
-        $t \gets p.new\_variable(integer = True)$\;
-        $p.set\_objective(t[0])$\;
+            $\text{maxCol} \gets 2 \cdot G.degree()[0] - 1$\;
 
-        $\text{maxCol} \gets 2 \cdot G.degree()[0] - 1$\;
+            $p.add\_constraint(t[0] = \text{maxCol})$\;
 
-        $p.add\_constraint(t[0] \geq \text{maxCol})$\;
-
-        \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
-            $p.add\_constraint(\sum_{i=1}^{\text{maxCol}} x[\text{Set}(e), i] = 1)$\;
-        }
-
-        \For{$(u,v)$ in $G.edges(\text{labels} = \text{False})$}{
-            $p.add\_constraint(\sum_{j \in G[u]} y[\text{Set}((u, j))] + \sum_{l \in G[v]} y[\text{Set}((l, v))] - 2y[\text{Set}((u, v))] \geq 1)$\;
-        }
-
-        \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
-            \For{$i$ in $1$ to $\text{maxCol}$}{
-                $p.add\_constraint(i \cdot x[\text{Set}(e), i] \leq t[0])$\;
+            \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
+                $p.add\_constraint(\sum_{i=1}^{\text{maxCol}} x[\text{Set}(e), i] = 1)$\;
             }
-        }
 
-        \For{$i$ in $1$ to $\text{maxCol}$}{
             \For{$(u,v)$ in $G.edges(\text{labels} = \text{False})$}{
-                \For{$w$ in $G[u]$}{
-                    \If{$w = v$}{
-                        \textbf{continue}\;
-                    }
-                    $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((u, w)), i] \leq 1)$\;
-                }
-                \For{$z$ in $G[v]$}{
-                    \If{$z = u$}{
-                        \textbf{continue}\;
-                    }
-                    $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((v, z)), i] \leq 1)$\;
+                $p.add\_constraint(\sum_{j \in G[u]} y[\text{Set}((u, j))] + \sum_{l \in G[v]} y[\text{Set}((l, v))] - 2y[\text{Set}((u, v))] \geq 1)$\;
+            }
+
+            \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
+                \For{$i$ in $1$ to $\text{maxCol}$}{
+                    $p.add\_constraint(i \cdot x[\text{Set}(e), i] \leq t[0])$\;
                 }
             }
-        }
 
-        \For{$(u, v)$ in $G.edges(\text{labels}=False)$}{
-            \For{$w$ in $G.neighbors(u)$}{
-                \For{$z$ in $G.neighbors(v)$}{
-                    \If{$w = v$ or $z = u$}{
-                        \textbf{continue}\;
+            \For{$i$ in $1$ to $\text{maxCol}$}{
+                \For{$(u,v)$ in $G.edges(\text{labels} = \text{False})$}{
+                    \For{$w$ in $G[u]$}{
+                        \If{$w = v$}{
+                            \textbf{continue}\;
+                        }
+                        $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((u, w)), i] \leq 1)$\;
                     }
-                    \For{$i$ in $1$ to $\text{maxCol}$}{
-                        $p.add\_constraint(x[\text{Set}((u, w)), i] + x[\text{Set}((v, z)), i] + y[\text{Set}((u, v))] \leq 2)$\;
+                    \For{$z$ in $G[v]$}{
+                        \If{$z = u$}{
+                            \textbf{continue}\;
+                        }
+                        $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((v, z)), i] \leq 1)$\;
                     }
                 }
             }
-        }
 
-        %\Try{
-        %    $p.solve()$\;
-        %    $colors \gets p.get\_values(x)$\;
-        %    $richEdges \gets p.get\_values(y)$\;
-        %}
-        %\Catch{ValueError}{
-        %    $\text{print}(\text{f'BINGO! The graph }{G}\text{ doesn't have a rich-neighbor edge coloring! \n' + f'Edges: }{G.edges()} \text{; \n' + f'Adjacency matrix: }{G.adjacency\_matrix()} \text{; \n' + f'Neighbors: }{G.neighbors()})$\;
-        %    \Return \text{False, False}\;
-        %}
-        %
-        \Return $colors$, $richEdges$\;
-        \end{algorithm}
+            \For{$(u, v)$ in $G.edges(\text{labels}=False)$}{
+                \For{$w$ in $G.neighbors(u)$}{
+                    \For{$z$ in $G.neighbors(v)$}{
+                        \If{$w = v$ or $z = u$}{
+                            \textbf{continue}\;
+                        }
+                        \For{$i$ in $1$ to $\text{maxCol}$}{
+                            $p.add\_constraint(x[\text{Set}((u, w)), i] + x[\text{Set}((v, z)), i] + y[\text{Set}((u, v))] \leq 2)$\;
+                        }
+                    }
+                }
+            }
 
+            %\Try{
+            %    $p.solve()$\;
+            %    $colors \gets p.get\_values(x)$\;
+            %    $richEdges \gets p.get\_values(y)$\;
+            %}
+            %\Catch{ValueError}{
+            %    $\text{print}(\text{f'BINGO! The graph }{G}\text{ doesn't have a rich-neighbor edge coloring! \n' + f'Edges: }{G.edges()} \text{; \n' + f'Adjacency matrix: }{G.adjacency\_matrix()} \text{; \n' + f'Neighbors: }{G.neighbors()})$\;
+            %    \Return \text{False, False}\;
+            %}
+            %
+            \Return $colors$, $richEdges$\;
+            \end{algorithm}
+
+\pagebreak
     \subsection{Iterative Algorithm}
             
             We also implemented an iterative algorithm that finds a rich-neighbor edge coloring for a given graph. The algorithm works by assigning a color to an edge and then checking if the coloring is valid. If it is, we move on to the next edge, otherwise we try a different color. If we can't find a valid coloring with $2 \Delta - 1$ colors, we increase the number of colors by one and try again.\\
     
             The algorithm is not guaranteed to find a coloring with $2 \Delta - 1$ colors, but it is guaranteed to find a coloring with $2 \Delta$ colors.\\
     
-            The algorithm is very fast for small graphs, but it becomes too slow for graphs with more than 10 vertices. Ta tekst so smeti ma tle bi pc mogli mal blefirat da je iterativn algoritm pocasnejsi od ILPja.\\
+            The algorithm is very fast for footnotesize graphs, but it becomes too slow for graphs with more than 10 vertices. Ta tekst so smeti ma tle bi pc mogli mal blefirat da je iterativn algoritm pocasnejsi od ILPja.\\
 
 \section{Complete search}
-    Since the number of k-regular graphs on n verices increases exponentially with n, we can't check all of them. We can however check all of them for small values of n. 
+    %Since the number of k-regular graphs on n verices increases exponentially with n, we can't check all of them. We can however check all of them for footnotesize values of n.
+
+\begin{table}[!htbp]\label{tab1}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Vertices & Degree 4 & Degree 5 & Degree 6 & Degree 7 \\
+        \hline
+        5 & 1 & 0 & 0 & 0 \\
+        6 & 1 & 1 & 0 & 0 \\
+        7 & 2 & 0 & 1 & 0 \\
+        8 & 6 & 3 & 1 & 1 \\
+        9 & 16 & 0 & 4 & 0 \\
+        10 & 59 & 60 & 21 & 5 \\
+        11 & 265 & 0 & 266 & 0 \\
+        12 & 1544 & 7848 & 7849 & 1547 \\
+        13 & 10778 & 0 & 367860 & 0 \\
+        14 & 88168 & 3459383 & 21609300 & 21609301 \\
+        15 & 805491 & 0 & 1470293675 & 0 \\
+        16 & 8037418 & 2585136675 & 113314233808 & 733351105934 \\
+        \hline
+    \end{tabular}
+    \caption{Number of $k$-regular graphs on $n$ vertices}
+\end{table}
+
 
     Magari vkluci se tabelo ki kaze kako hitro raste stevilo vseh povezanih grafov na n vozlih.
     Nasploh pa mal raztegni besedilo.
@@ -296,7 +319,7 @@ Ljubljana, \letnica}
 
 \section{Random Search}
     Along with testing the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. Since we can't even begin to check all for exmaple $20$-regular graphs on $100$ vertices, a random search algorytm seemed as a natural continuation of our problem. And since the we aren't looking for an optimum solution (anything more than the minimum $2 \Delta - 1$ disproves the conjecture), we opted for a modification approach. We start with a random graph, check if the conjecture holds, and then 
-    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a small probability that we generate a completely new random graph and start again.  Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
+    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a footnotesize probability that we generate a completely new random graph and start again.  Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
 
     Opisi algoritem
     \begin{algorithm}

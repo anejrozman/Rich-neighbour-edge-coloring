@@ -21,9 +21,7 @@ def richNeighbor(G):
     maxCol = 2*G.degree()[0] - 1
     
     # Add constraints
-    # We are not interested in the smallest possible number of colors, 
-    # it is only important to satisfy the conjecture
-    p.add_constraint(t[0] >= maxCol)
+    p.add_constraint(t[0] == maxCol)
     
     # Each edge is colored exactly one color
     for e in G.edges(labels = False):
@@ -70,7 +68,7 @@ def richNeighbor(G):
         colors = p.get_values(x)
         richEdges = p.get_values(y)
     except ValueError:
-        print(f'BINGO! The graph {G} doesnt have a rich-neighbor edge coloring! \n' +
+        print(f'BINGO! The graph {G} does not have a rich-neighbor edge coloring that satisfies the conjecture! \n' +
               f'Edges:{G.edges()}; \n' + 
               f'Adjacency matix: {G.adjacency_matrix()}; \n'
               f'Neighbors: {G.neighbors()}')  
