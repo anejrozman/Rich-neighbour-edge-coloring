@@ -285,46 +285,53 @@ Ljubljana, \letnica}
             The algorithm is very fast for footnotesize graphs, but it becomes too slow for graphs with more than 10 vertices. Ta tekst so smeti ma tle bi pc mogli mal blefirat da je iterativn algoritm pocasnejsi od ILPja.\\
 
 \section{Complete search}
-    %Since the number of k-regular graphs on n verices increases exponentially with n, we can't check all of them. We can however check all of them for footnotesize values of n.
 
-\begin{table}[!htbp]\label{tab1}
-    \centering
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        Vertices & Degree 4 & Degree 5 & Degree 6 & Degree 7 \\
-        \hline
-        5 & 1 & 0 & 0 & 0 \\
-        6 & 1 & 1 & 0 & 0 \\
-        7 & 2 & 0 & 1 & 0 \\
-        8 & 6 & 3 & 1 & 1 \\
-        9 & 16 & 0 & 4 & 0 \\
-        10 & 59 & 60 & 21 & 5 \\
-        11 & 265 & 0 & 266 & 0 \\
-        12 & 1544 & 7848 & 7849 & 1547 \\
-        13 & 10778 & 0 & 367860 & 0 \\
-        14 & 88168 & 3459383 & 21609300 & 21609301 \\
-        15 & 805491 & 0 & 1470293675 & 0 \\
-        16 & 8037418 & 2585136675 & 113314233808 & 733351105934 \\
-        \hline
-    \end{tabular}
-    \caption{Number of $k$-regular graphs on $n$ vertices}
-\end{table}
+    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices is of exponential growth. This poses a computational challenge, as exhaustively examining all such graphs becomes impractical for larger values of $n$. The sheer scale of potential combinations makes a complete search unfeasible within reasonable timeframes.
 
+    However, a thorough exploration of all $k$-regular graphs remains viable and efficient for footnotesize values of $n$.
 
-    Magari vkluci se tabelo ki kaze kako hitro raste stevilo vseh povezanih grafov na n vozlih.
-    Nasploh pa mal raztegni besedilo.
+    \begin{table}[!htbp]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            Vertices & Degree 4 & Degree 5 & Degree 6 & Degree 7 \\
+            \hline
+            5 & 1 & 0 & 0 & 0 \\
+            6 & 1 & 1 & 0 & 0 \\
+            7 & 2 & 0 & 1 & 0 \\
+            8 & 6 & 3 & 1 & 1 \\
+            9 & 16 & 0 & 4 & 0 \\
+            10 & 59 & 60 & 21 & 5 \\
+            11 & 265 & 0 & 266 & 0 \\
+            12 & 1544 & 7848 & 7849 & 1547 \\
+            13 & 10778 & 0 & 367860 & 0 \\
+            14 & 88168 & 3459383 & 21609300 & 21609301 \\
+            15 & 805491 & 0 & 1470293675 & 0 \\
+            16 & 8037418 & 2585136675 & 113314233808 & 733351105934 \\
+            \hline
+        \end{tabular}
+        \caption{Number of $k$-regular graphs on $n$ vertices}
+        \label{table:1}
+    \end{table}
 
     \subsection{Graph generation}
-        Na dolgo, povej da je riste dal njegove .txt datoteke kjer so vsi k-regularni grafi na n-vozliscih. 
+        Graphs for the complete search were taken from a collection of \texttt{.tex} files, provided by Professor Skrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices.
 
 \section{Random Search}
-    Along with testing the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. Since we can't even begin to check all for exmaple $20$-regular graphs on $100$ vertices, a random search algorytm seemed as a natural continuation of our problem. And since the we aren't looking for an optimum solution (anything more than the minimum $2 \Delta - 1$ disproves the conjecture), we opted for a modification approach. We start with a random graph, check if the conjecture holds, and then 
-    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since ...........dodaj razlog......., on every iteration, there is a footnotesize probability that we generate a completely new random graph and start again.  Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
 
-    Opisi algoritem
-    \begin{algorithm}
+    In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge is, as said before, the pure impracticality of systematically testing all potential scenarios of colorings in graphs with many vertices.
+
+    Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.\\
+
+    We start with a random graph, check if the conjecture holds and then 
+    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, there is a footnotesize probability that we generate a completely new random graph and start again.  
+
+    %Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
+
+    Written below is the algorithm for modifying graphs. First it selects two random edges and deletes them. Then it assigns a random probability to $p$ and based on the value of $p$ it adds back to different edges we did not have before. It repeats this until it gets a connected modified graph.
+    \begin{algorithm}[!htbp]
         \caption{tweak}\label{algo:tweakGraph}
-        \LinesNumbered
+        \LinesNumberedHidden
         \DontPrintSemicolon
         \SetAlgoNlRelativeSize{0}
         \SetAlgoNlRelativeSize{-1}
@@ -367,12 +374,81 @@ Ljubljana, \letnica}
         \end{algorithm}
 
     
-
+    \pagebreak
     \subsection{Graph generation}
         Since we only need one graph to start our iterative process, we can generate it randomly using the built in sage function \texttt{graphs.RandomRegular}.
 
-\section{Preventiva}
-tukej daj algoritma chack coloring in check richness. Ostalo bom js napisu
+\section{Checking the coloring} %tukej daj algoritma chack coloring in check richness. Ostalo bom js napisu
+    dodaj še opisa algoritmov
+    \begin{algorithm}[!htbp]
+        \caption{Check Coloring}\label{algo:checkColoring}
+        \LinesNumberedHidden
+        \DontPrintSemicolon
+        \SetAlgoNlRelativeSize{0}
+        \SetAlgoNlRelativeSize{-1}
+        \SetAlgoNlRelativeSize{1}
+        \SetKwInput{KwInput}{Input}
+        \SetKwInput{KwOutput}{Output}
+
+        \SetKwFunction{FCheckColoring}{checkColoring}
+
+        \KwInput{Graph $G$, Coloring $coloring$}
+        \KwOutput{Boolean indicating proper coloring}
+
+        \For{$v$ in $G.vertices()$}{
+            $col \gets \text{set()}$\;
+            \For{$w$ in $G.neighbors(v)$}{
+                \For{$i$ in $range(1, 2 \cdot G.degree()[0])$}{
+                    \If{$coloring[(\text{Set}((v, w)), i)] = 1$}{
+                        $col.\text{add}(i)$\;
+                    }
+                }
+            }
+            \If{$\text{len}(col) \neq \text{len}(G.neighbors(v))$}{
+                \Return \text{False}\;
+            }
+        }
+        \Return \text{True}\;
+    \end{algorithm}
+
+
+    \begin{algorithm}[!htbp]
+        \caption{Check Richness}\label{algo:checkRichness}
+        \LinesNumberedHidden
+        \DontPrintSemicolon
+        \SetAlgoNlRelativeSize{0}
+        \SetAlgoNlRelativeSize{-1}
+        \SetAlgoNlRelativeSize{1}
+        \SetKwInput{KwInput}{Input}
+        \SetKwInput{KwOutput}{Output}
+        
+        \SetKwFunction{FCheckRichness}{checkRichness}
+        
+        \KwInput{Graph $G$, Rich edges $richEdges$}
+        \KwOutput{Boolean indicating proper rich-neighbor edge coloring}
+        
+        \For{$(u, v)$ in $G.edges(labels = False)$}{
+            $S \gets 0$\;
+            \For{$w$ in $G.neighbors(u)$}{
+                \If{$w = v$}{
+                    $S \gets S + richEdges[\text{Set}((u, w))]$\;
+                }
+            }
+            \For{$z$ in $G.neighbors(v)$}{
+                \If{$z = u$}{
+                    $S \gets S + richEdges[\text{Set}((v, z))]$\;
+                }
+            }
+            \If{$S = 0$}{
+                \Return \text{False}\;
+            }
+        }
+        \Return \text{True}\;
+    \end{algorithm}
+    
+    
+    \pagebreak
+
 
 \section{Findings}
 
