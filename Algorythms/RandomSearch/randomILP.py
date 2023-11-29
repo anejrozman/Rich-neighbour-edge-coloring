@@ -9,6 +9,7 @@ import sys
 # Access command-line arguments
 if len(sys.argv) != 3:
     print("Usage: sage randomILP.py N K")
+    sys.stdout.flush()
     sys.exit(1)
 
 # Extract N and K from command-line arguments
@@ -21,6 +22,7 @@ if (N * K) % 2 != 0 or N <= 0 or K <= 0 or K > N - 1:
           'N * K must be even \n' +
           'N and K must be positive \n' +
           'K must be less than N - 1')
+    sys.stdout.flush()
     
 #--------------------------------------------------------------------------------------#
 
@@ -101,6 +103,7 @@ def richNeighbor(G):
               f'Edges:{G.edges()}; \n' + 
               f'Adjacency matix: {G.adjacency_matrix()}; \n'
               f'Neighbors: {G.neighbors()}')  
+        sys.stdout.flush()
         return False, False
     return colors, richEdges
 
@@ -182,7 +185,8 @@ def checkRichness(G, richEdges):
 
 #--------------------------------------------------------------------------------------#
 
-print('start')
+print('start, N = ' + str(N) + ', K = ' + str(K))
+sys.stdout.flush()
 # Generate a random graph
 G = generateGraph(N, K)
 
@@ -190,8 +194,9 @@ G = generateGraph(N, K)
 c = 0
 while True: 
     c += 1
-    if c % 10 == 0:
+    if c % 30 == 0:
         print(f'Number of iterations:{c}')
+        sys.stdout.flush()
 
     # Run ILP
     colors, richEdges = richNeighbor(G)
@@ -206,6 +211,7 @@ while True:
                   f'Edges:{G.edges()}; \n' + 
                   f'Adjacency matix: {G.adjacency_matrix()}; \n'
                   f'Neighbors: {G.neighbors()}')
+            sys.stdout.flush()
         
     # Tweak graph
     G = tweak(G)

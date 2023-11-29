@@ -72,6 +72,7 @@ def richNeighbor(G):
               f'Edges:{G.edges()}; \n' + 
               f'Adjacency matix: {G.adjacency_matrix()}; \n'
               f'Neighbors: {G.neighbors()}')  
+        sys.stdout.flush()
         return False, False
     return colors, richEdges
 
@@ -116,11 +117,13 @@ def checkRichness(G, richEdges):
 #--------------------------------------------------------------------------------------#	
   
 print('start')
+sys.stdout.flush()
 c = 0
 for graph in sys.stdin:
         c += 1
-        if c % 10 == 0:
+        if c % 30 == 0:
             print(f'Graphs checked so far: {c}')
+            sys.stdout.flush()
 
         G = Graph(graph)
         
@@ -128,6 +131,7 @@ for graph in sys.stdin:
         colors, richEdges = richNeighbor(G)
         if c == 0: # Potrdilo da skripta deluje
             print('First graph checked!')
+            sys.stdout.flush()
         if colors == False:
             continue
 
@@ -138,8 +142,10 @@ for graph in sys.stdin:
                       f'Edges:{G.edges()}; \n' + 
                       f'Adjacency matix: {G.adjacency_matrix()}; \n'
                       f'Neighbors: {G.neighbors()}')
+                sys.stdout.flush()
 
 print("done") 
+sys.stdout.flush()
 
 
 
