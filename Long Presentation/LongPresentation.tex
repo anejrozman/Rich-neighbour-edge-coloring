@@ -153,29 +153,30 @@ Ljubljana, \letnica}
 
 
 \section{Algorithms}
+
     \subsection{Integer Programming}
 
         Using SageMath we constructed an integer programming model that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Our interger program looks like this:\\
 
-        minimize $t$ \hfill \footnotesize{\textcolor{black}{we minimize the number of colors we need}}\\
+        \noindent minimize $t$ \hfill \normalsize{\textcolor{black}{we minimize the number of colors we need}}\\
         %vsoto sm dala do 2delta - 1 prej je bla do k a je to kul???
-        subject to $\forall e: \quad \sum_{i=1}^{2\Delta - 1} x_{ei} = 1$ \hfill \footnotesize{\textcolor{black}{each edge is exactly one color}}\\
+        \ \ \ subject to $\forall e: \quad \sum_{i=1}^{2\Delta - 1} x_{ei} = 1$ \hfill \normalsize{\textcolor{black}{each edge is exactly one color}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
-        \textcolor{white}{hihi} \hfill \footnotesize{\textcolor{black}{edges with the same vertex are a different color}}\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall u \ \forall v, w \sim u, v \neq u: \quad x_{uv, i} + x_{uw, i} \leq 1$\\[0.1mm]
+        \textcolor{white}{hihi} \hfill \normalsize{\textcolor{black}{edges with the same vertex are a different color}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \footnotesize{\textcolor{black}{we use less or equal to $t$ colors}}\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad x_{ei} \cdot i \leq t$ \hfill \normalsize{\textcolor{black}{we use less or equal to $t$ colors}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w: \quad x_{uw, i} + x_{vz, i} + y_{uv} \leq 2$ \hfill \\[0.1mm]
-        \textcolor{white}{hihi} \hfill \footnotesize{\textcolor{black}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}}\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall i \ \forall uv \ \forall w \sim u, w \neq v \ \forall z \sim v, z \neq u, w: \quad x_{uw, i} + x_{vz, i} + y_{uv} \leq 2$ \hfill \\[0.1mm]
+        \textcolor{white}{hihi} \hfill \normalsize{\textcolor{black}{$uv$ is a rich edge $\Leftrightarrow$ all adjacent edges are a different color}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \footnotesize{\textcolor{black}{every edge is adjacent to some rich edge}}\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad \sum_{f \sim e}y_f \geq 1$ \hfill \normalsize{\textcolor{black}{every edge is adjacent to some rich edge}}\\
 
-        %\ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \footnotesize{\textcolor{black}{we use $\geq 2 \Delta - 1$ colors}}\\
+        %\ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \normalsize{\textcolor{black}{we use $\geq 2 \Delta - 1$ colors}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
 
-        \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
 
         where
         \begin{align*}        x_{ei} = \begin{cases}
@@ -201,9 +202,9 @@ Ljubljana, \letnica}
             \caption{richNeighbor}\label{algo:richNeighbor}
             \LinesNumberedHidden
             \DontPrintSemicolon
-            \SetAlgoNlRelativeSize{0}
-            \SetAlgoNlRelativeSize{-1}
-            \SetAlgoNlRelativeSize{1}
+            %\SetAlgoNlRelativeSize{0}
+            %\SetAlgoNlRelativeSize{-1}
+            %\SetAlgoNlRelativeSize{1}
             \SetKwInput{KwInput}{Input}
             \SetKwInput{KwOutput}{Output}
 
@@ -213,26 +214,26 @@ Ljubljana, \letnica}
             \KwOutput{Colors $colors$, Rich edges $richEdges$}
 
             $p \gets$ MixedIntegerLinearProgram(maximization = False)\;
-            $x \gets p.new\_variable(binary = True)$\;
-            $y \gets p.new\_variable(binary = True)$\;
-            $t \gets p.new\_variable(integer = True)$\;
-            $p.set\_objective(t[0])$\;
+            $x \gets p.\text{new\_variable(binary = True)}$\;
+            $y \gets p.\text{new\_variable(binary = True)}$\;
+            $t \gets p.\text{new\_variable(integer = True)}$\;
+            $p.\text{set\_objective}(t[0])$\;
 
-            $\text{maxCol} \gets 2 \cdot G.degree()[0] - 1$\;
+            $maxCol \gets 2 \cdot G.degree()[0] - 1$\;
 
-            $p.add\_constraint(t[0] = \text{maxCol})$\;
+            $p.\text{add\_constraint}(t[0] = \text{maxCol})$\;
 
             \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
-                $p.add\_constraint(\sum_{i=1}^{\text{maxCol}} x[\text{Set}(e), i] = 1)$\;
+                $p.\text{add\_constraint}(\sum_{i=1}^{maxCol} x[\text{Set}(e), i] = 1)$\;
             }
 
             \For{$(u,v)$ in $G.edges(\text{labels} = \text{False})$}{
-                $p.add\_constraint(\sum_{j \in G[u]} y[\text{Set}((u, j))] + \sum_{l \in G[v]} y[\text{Set}((l, v))] - 2y[\text{Set}((u, v))] \geq 1)$\;
+                $p.\text{add\_constraint}(\sum_{j \in G[u]} y[\text{Set}((u, j))] + \sum_{l \in G[v]} y[\text{Set}((l, v))] - 2y[\text{Set}((u, v))] \geq 1)$\;
             }
 
             \For{$e$ in $G.edges(\text{labels} = \text{False})$}{
                 \For{$i$ in $1$ to $\text{maxCol}$}{
-                    $p.add\_constraint(i \cdot x[\text{Set}(e), i] \leq t[0])$\;
+                    $p.\text{add\_constraint}(i \cdot x[\text{Set}(e), i] \leq t[0])$\;
                 }
             }
 
@@ -242,13 +243,13 @@ Ljubljana, \letnica}
                         \If{$w = v$}{
                             \textbf{continue}\;
                         }
-                        $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((u, w)), i] \leq 1)$\;
+                        $p.\text{add\_constraint}(x[\text{Set}((u, v)), i] + x[\text{Set}((u, w)), i] \leq 1)$\;
                     }
                     \For{$z$ in $G[v]$}{
                         \If{$z = u$}{
                             \textbf{continue}\;
                         }
-                        $p.add\_constraint(x[\text{Set}((u, v)), i] + x[\text{Set}((v, z)), i] \leq 1)$\;
+                        $p.\text{add\_constraint}(x[\text{Set}((u, v)), i] + x[\text{Set}((v, z)), i] \leq 1)$\;
                     }
                 }
             }
@@ -260,7 +261,7 @@ Ljubljana, \letnica}
                             \textbf{continue}\;
                         }
                         \For{$i$ in $1$ to $\text{maxCol}$}{
-                            $p.add\_constraint(x[\text{Set}((u, w)), i] + x[\text{Set}((v, z)), i] + y[\text{Set}((u, v))] \leq 2)$\;
+                            $p.\text{add\_constraint}(x[\text{Set}((u, w)), i] + x[\text{Set}((v, z)), i] + y[\text{Set}((u, v))] \leq 2)$\;
                         }
                     }
                 }
@@ -279,20 +280,19 @@ Ljubljana, \letnica}
             \Return $colors$, $richEdges$\;
             \end{algorithm}
 
-\pagebreak
+            \pagebreak
+
+            \begin{primer}(Petersen Graph)
+                hgf
+            \end{primer}    
+
     \subsection{Iterative Algorithm}
             
-            We also implemented an iterative algorithm that finds a rich-neighbor edge coloring for a given graph. The algorithm works by assigning a color to an edge and then checking if the coloring is valid. If it is, we move on to the next edge, otherwise we try a different color. If we can't find a valid coloring with $2 \Delta - 1$ colors, we increase the number of colors by one and try again.\\
-    
-            The algorithm is not guaranteed to find a coloring with $2 \Delta - 1$ colors, but it is guaranteed to find a coloring with $2 \Delta$ colors.\\
-    
-            The algorithm is very fast for footnotesize graphs, but it becomes too slow for graphs with more than 10 vertices. Ta tekst so smeti ma tle bi pc mogli mal blefirat da je iterativn algoritm pocasnejsi od ILPja.\\
+        We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we weren't able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it didn't make much sense implementing a slower algorythm.
 
 \section{Complete search}
 
-    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices is of exponential growth. This poses a computational challenge, as exhaustively examining all such graphs becomes impractical for larger values of $n$. The sheer scale of potential combinations makes a complete search unfeasible within reasonable timeframes.
-
-    However, a thorough exploration of all $k$-regular graphs remains viable and efficient for footnotesize values of $n$.
+    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices is of exponential growth. This poses a computational challenge, as checking all graphs becomes impossible for larger values of n. However, we can still check all graphs for smaller values of n up to 15.
 
     \begin{table}[!htbp]
         \centering
@@ -323,23 +323,23 @@ Ljubljana, \letnica}
 
 \section{Random Search}
 
-    In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge is, as said before, the pure impracticality of systematically testing all potential scenarios of colorings in graphs with many vertices.
+    In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge is, as said before, testing all colorings in graphs with many vertices.
 
     Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.\\
 
     We start with a random graph, check if the conjecture holds and then 
-    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, there is a footnotesize probability that we generate a completely new random graph and start again.  
+    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, there is a small probability that we generate a completely new random graph and start again.
 
     %Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
 
-    Written below is the algorithm for modifying graphs. First it selects two random edges and deletes them. Then it assigns a random probability to $p$ and based on the value of $p$ it adds back to different edges we did not have before. It repeats this until it gets a connected modified graph.
+    Written below is the algorithm for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges we did not have before. It repeats this until it gets a connected modified graph.
     \begin{algorithm}[!htbp]
         \caption{tweak}\label{algo:tweakGraph}
         \LinesNumberedHidden
         \DontPrintSemicolon
-        \SetAlgoNlRelativeSize{0}
-        \SetAlgoNlRelativeSize{-1}
-        \SetAlgoNlRelativeSize{1}
+        %\SetAlgoNlRelativeSize{0}
+        %\SetAlgoNlRelativeSize{-1}
+        %\SetAlgoNlRelativeSize{1}
         \SetKwInput{KwInput}{Input}
         \SetKwInput{KwOutput}{Output}
         
@@ -368,8 +368,8 @@ Ljubljana, \letnica}
                 $T.\text{add\_edge}(v_1, u_2)$\;
             }
             
-            \If{not $T.\text{is\_connected}()$}{
-                \Return \text{tweakGraph}(\text{graph})\;
+            \If{\text{not $T$.is\_connected()}}{
+                \Return \text{tweak}($G$)\;
             }
             
             \Return $T$\;
@@ -388,9 +388,9 @@ Ljubljana, \letnica}
         \caption{Check Coloring}\label{algo:checkColoring}
         \LinesNumberedHidden
         \DontPrintSemicolon
-        \SetAlgoNlRelativeSize{0}
-        \SetAlgoNlRelativeSize{-1}
-        \SetAlgoNlRelativeSize{1}
+        %\SetAlgoNlRelativeSize{0}
+        %\SetAlgoNlRelativeSize{-1}
+        %\SetAlgoNlRelativeSize{1}
         \SetKwInput{KwInput}{Input}
         \SetKwInput{KwOutput}{Output}
 
@@ -405,7 +405,7 @@ Ljubljana, \letnica}
                 \For{$i$ in $range(1, 2 \cdot G.degree()[0])$}{
                     \If{$coloring[(\text{Set}((v, w)), i)] = 1$}{
                         $col.\text{add}(i)$\;
-                    }
+                }
                 }
             }
             \If{$\text{len}(col) \neq \text{len}(G.neighbors(v))$}{
@@ -420,9 +420,9 @@ Ljubljana, \letnica}
         \caption{Check Richness}\label{algo:checkRichness}
         \LinesNumberedHidden
         \DontPrintSemicolon
-        \SetAlgoNlRelativeSize{0}
-        \SetAlgoNlRelativeSize{-1}
-        \SetAlgoNlRelativeSize{1}
+        %\SetAlgoNlRelativeSize{0}
+        %\SetAlgoNlRelativeSize{-1}
+        %\SetAlgoNlRelativeSize{1}
         \SetKwInput{KwInput}{Input}
         \SetKwInput{KwOutput}{Output}
         
@@ -458,6 +458,7 @@ Ljubljana, \letnica}
 
 \section{Conclusion}
 
-
+\bibliographystyle{plain}
+\bibliography{lit}
 
 \end{document}
