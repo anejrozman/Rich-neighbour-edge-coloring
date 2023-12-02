@@ -137,7 +137,7 @@ for graph in sys.stdin:
 
         # Check if the coloring is valid
         if c % 100 == 0:
-            if not checkColoring(G, colors, richEdges) or not checkRichness(G, richEdges):
+            if not checkColoring(G, colors) or not checkRichness(G, richEdges):
                 print('ILP failed to find a valid coloring! \n' +
                       f'Edges:{G.edges()}; \n' + 
                       f'Adjacency matix: {G.adjacency_matrix()}; \n'
