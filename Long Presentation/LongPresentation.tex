@@ -121,6 +121,8 @@ Ljubljana, \letnica}
         For every graph $G$ of maximum degree $\Delta$, $X'_{rn}(G) \leq 2\Delta - 1$ holds.
     \end{conjecture}
 
+    This paper focuses on analysing the conjecture only for regular graphs.
+
     \begin{primer}
     Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.\\
     \begin{center}
@@ -180,7 +182,7 @@ Ljubljana, \letnica}
 
         where
         \begin{align*}        x_{ei} = \begin{cases}
-                    1, \  \text{if edge $e$ has color $i$} \\
+                    1, \  \text{if edge $e$ is color $i$} \\
                     0, \  \text{otherwise}
             \end{cases} & \text{and} & 
             y_{e} = \begin{cases}
@@ -196,6 +198,8 @@ Ljubljana, \letnica}
             t = 2\Delta - 1,
         $$
         since the coloring can't be made with less colors (every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color) and any more colors do not satisfie the conjecture. Therefore we only check if the program has a solution that satisfies all the constraints and the conjecture. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
+
+        \pagebreak
 
         Our implementation of the IPL is demonstrated in the following code.
         \begin{algorithm}[!htbp]
@@ -282,17 +286,49 @@ Ljubljana, \letnica}
 
             \pagebreak
 
-            \begin{primer}(Petersen Graph)
-                hgf
+            \begin{primer}
+                Using the \texttt{richNeighbor} algorithm on the Petersen graph gives us the following result.\\*
+
+                \begin{align*}
+                    colors = \{ & (\{0, 1\}, 1): 0.0, (\{0, 1\}, 2): 0.0, (\{0, 1\}, 3): 0.0, (\{0, 1\}, 4): 0.0,\\
+                                & (\{0, 1\}, 5): 1.0, (\{0, 4\}, 1): 0.0, (\{0, 4\}, 2): 0.0, (\{0, 4\}, 3): 1.0,\\
+                                & \cdots \\
+                                & (\{9, 6\}, 3): 0.0, (\{9, 6\}, 4): 0.0, (\{9, 6\}, 5): 0.0, (\{9, 7\}, 1): 0.0,\\
+                                & (\{9, 7\}, 2): 0.0, (\{9, 7\}, 3): 0.0, (\{9, 7\}, 4): 1.0, (\{9, 7\}, 5): 0.0\}
+                \end{align*}
+
+                \begin{align*}
+                    richEdges = \{& \{0, 1\}: 1.0, \{0, 4\}: 0.0, \{0, 5\}: 0.0, \{1, 2\}: 1.0, \{1, 6\}: 0.0,\\
+                                  & \{3, 4\}: 0.0, \{9, 4\}: 1.0, \{5, 7\}: 0.0, \{8, 5\}: 1.0, \{2, 3\}: 1.0,\\
+                                  & \{2, 7\}: 0.0, \{8, 6\}: 0.0, \{9, 6\}: 0.0, \{8, 3\}: 1.0, \{9, 7\}: 1.0\}
+                \end{align*}
+
+                Both $colors$ and $richEdges$ are dictionaries and their key-value pairs are structured like
+
+                \begin{align*}
+                    (e, i):
+                    \begin{cases}
+                        1.0, \  \text{if edge $e$ is color $i$} \\
+                        0.0, \  \text{otherwise}
+                    \end{cases} & \text{and} & 
+                    e:
+                    \begin{cases}
+                        1.0, \  \text{if edge $e$ is rich} \\
+                        0.0, \  \text{otherwise.}
+                    \end{cases}
+                \end{align*}
+
             \end{primer}    
 
     \subsection{Iterative Algorithm}
             
-        We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we weren't able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it didn't make much sense implementing a slower algorythm.
+        We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did not make much sense implementing a slower algorythm.
+
+    \pagebreak
 
 \section{Complete search}
 
-    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices is of exponential growth. This poses a computational challenge, as checking all graphs becomes impossible for larger values of n. However, we can still check all graphs for smaller values of n up to 15.
+    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices grows exponentially with $n$. This poses a computational challenge, as checking all graphs becomes impossible for larger values of n. However, we can still check all graphs for smaller values of n up to 15.
 
     \begin{table}[!htbp]
         \centering
@@ -314,21 +350,21 @@ Ljubljana, \letnica}
             16 & 8037418 & 2585136675 & 113314233808 & 733351105934 \\
             \hline
         \end{tabular}
-        \caption{Number of $k$-regular graphs on $n$ vertices}
+        \caption{Number of $k$-regular graphs on $n$ vertices \cite{meringer1999fast}
+        }
         \label{table:1}
     \end{table}
 
     \subsection{Graph generation}
-        Graphs for the complete search were taken from a collection of \texttt{.tex} files, provided by Professor Skrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices.
+        Graphs for the complete search were taken from a collection of files, provided by Professor Skrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices.
 
 \section{Random Search}
 
-    In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge is, as said before, testing all colorings in graphs with many vertices.
-
+    In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge here is testing all possible colorings in graphs with many vertices.
     Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.\\
 
     We start with a random graph, check if the conjecture holds and then 
-    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, there is a small probability that we generate a completely new random graph and start again.
+    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well in reality, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, there is a small probability that we generate a completely new random graph and start again.\\
 
     %Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
 
@@ -380,10 +416,10 @@ Ljubljana, \letnica}
     
     \pagebreak
     \subsection{Graph generation}
-        Since we only need one graph to start our iterative process, we can generate it randomly using the built in sage function \texttt{graphs.RandomRegular}.
+        Since we only need one graph to start our iterative process, we can generate it randomly, using the built-in SageMath function \texttt{graphs.RandomRegular}.
 
 \section{Checking the coloring} %tukej daj algoritma chack coloring in check richness. Ostalo bom js napisu
-    dodaj še opisa algoritmov
+    %dodaj še opisa algoritmov
     \begin{algorithm}[!htbp]
         \caption{Check Coloring}\label{algo:checkColoring}
         \LinesNumberedHidden

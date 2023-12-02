@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex LongPresentation"] 1701456817 "LongPresentation.aux" "LongPresentation.bbl" "LongPresentation" 1701457162
+["bibtex LongPresentation"] 1701507874 "LongPresentation.aux" "LongPresentation.bbl" "LongPresentation" 1701507878
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "LongPresentation.aux" 1701457161 2565 10cb0c560245c5506fdce4bf0209fcbf "pdflatex"
-  "lit.bib" 1701455664 966 9f2df37e64946020dac29c2d5d607f2f ""
+  "LongPresentation.aux" 1701507876 2678 9ee3c2ac94bbd407f46fe61e9dd8a262 "pdflatex"
+  "lit.bib" 1701507635 1173 e6d6f6972d75ffd0fc45935948c1eda2 ""
   (generated)
   "LongPresentation.bbl"
   "LongPresentation.blg"
-["pdflatex"] 1701457159 "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/projekt/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1701457162
+["pdflatex"] 1701507875 "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/projekt/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1701507878
   "C:/Users/tanja/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1633353837 9715384 702c1159b0eccf8098121f6cb738e987 ""
   "C:/Users/tanja/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1701240241 123198 3bbd8409905bfb5918bb33e6a0462096 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -163,13 +163,13 @@
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1622546726 4545 d84d0b20a11b9c36c6ecf45697be591c ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/tanja/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1623002060 55589 34128738f682d033422ca125f82e5d62 ""
-  "LongPresentation.aux" 1701457161 2565 10cb0c560245c5506fdce4bf0209fcbf "pdflatex"
-  "LongPresentation.bbl" 1701456817 400 1bbdc3c74f7c162862e97cfbeb830ff6 "bibtex LongPresentation"
-  "LongPresentation.tex" 1701457157 19636 79641d18eea74e3db641a16d33d7e48a ""
-  "LongPresentation.toc" 1701457161 842 6985aadcc4d27adcf19b5c42ebd3057d "pdflatex"
-  "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/projekt/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" 1701457157 19636 79641d18eea74e3db641a16d33d7e48a ""
+  "LongPresentation.aux" 1701507876 2678 9ee3c2ac94bbd407f46fe61e9dd8a262 "pdflatex"
+  "LongPresentation.bbl" 1701507875 577 f6572c88ebdc0545e0a6ea5e6a8bf3d9 "bibtex LongPresentation"
+  "LongPresentation.tex" 1701507868 21468 8570fa72c6978b668b8ef0a68f66f518 ""
+  "LongPresentation.toc" 1701507876 842 89a26ede4c6061c5960b64d763035221 "pdflatex"
+  "c:/Users/tanja/Documents/FIN/3_LETNIK/FP/projekt/Rich-Neighbor-Edge-Colorings/Long Presentation/LongPresentation.tex" 1701507868 21468 8570fa72c6978b668b8ef0a68f66f518 ""
   (generated)
   "LongPresentation.log"
   "LongPresentation.aux"
-  "LongPresentation.toc"
   "LongPresentation.pdf"
+  "LongPresentation.toc"
