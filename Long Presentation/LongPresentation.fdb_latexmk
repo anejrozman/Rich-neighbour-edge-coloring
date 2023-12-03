@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex LongPresentation"] 1701620703 "LongPresentation.aux" "LongPresentation.bbl" "LongPresentation" 1701620879
+["bibtex LongPresentation"] 1701620703 "LongPresentation.aux" "LongPresentation.bbl" "LongPresentation" 1701621536
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "LongPresentation.aux" 1701620879 2711 ee4319efad7f837b13747aa59177e95a "pdflatex"
+  "LongPresentation.aux" 1701621535 2711 ee4319efad7f837b13747aa59177e95a "pdflatex"
   "lit.bib" 1701539686 1173 e6d6f6972d75ffd0fc45935948c1eda2 ""
   (generated)
-  "LongPresentation.blg"
   "LongPresentation.bbl"
-["pdflatex"] 1701620877 "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1701620879
+  "LongPresentation.blg"
+["pdflatex"] 1701621531 "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" "LongPresentation.pdf" "LongPresentation" 1701621536
   "C:/Users/38651/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1636382073 9726367 c86c2a9804d7592c617a691d30e1597c ""
   "C:/Users/38651/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1700860070 123357 28e027cbdbbaf14773e0974241f40532 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -162,13 +162,13 @@
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1622546726 4545 d84d0b20a11b9c36c6ecf45697be591c ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/38651/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1636284872 56029 3f7889dab51d620aa43177c391b7b190 ""
-  "LongPresentation.aux" 1701620879 2711 ee4319efad7f837b13747aa59177e95a "pdflatex"
+  "LongPresentation.aux" 1701621535 2711 ee4319efad7f837b13747aa59177e95a "pdflatex"
   "LongPresentation.bbl" 1701620703 577 f6572c88ebdc0545e0a6ea5e6a8bf3d9 "bibtex LongPresentation"
-  "LongPresentation.tex" 1701620876 22036 4be4834515ae6898b7aea26b989f01a0 ""
-  "LongPresentation.toc" 1701620879 842 89a26ede4c6061c5960b64d763035221 "pdflatex"
-  "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" 1701620876 22036 4be4834515ae6898b7aea26b989f01a0 ""
+  "LongPresentation.tex" 1701621530 22135 408893a0cc0eda1a2bf92b93ff78ed1d ""
+  "LongPresentation.toc" 1701621535 842 89a26ede4c6061c5960b64d763035221 "pdflatex"
+  "c:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Rich-neighbour/Rich-neighbour-edge-coloring/Long presentation/LongPresentation.tex" 1701621530 22135 408893a0cc0eda1a2bf92b93ff78ed1d ""
   (generated)
-  "LongPresentation.aux"
-  "LongPresentation.pdf"
   "LongPresentation.log"
   "LongPresentation.toc"
+  "LongPresentation.pdf"
+  "LongPresentation.aux"
