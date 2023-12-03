@@ -121,7 +121,7 @@ Ljubljana, \letnica}
         For every graph $G$ of maximum degree $\Delta$, $X'_{rn}(G) \leq 2\Delta - 1$ holds.
     \end{conjecture}
 
-    This paper focuses on analysing the conjecture only for regular graphs.
+    In the paper we focus on analysing the conjecture only for regular graphs. We plan to do this by implementing an integer programming model that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible.
 
     \begin{primer}
     Let's take a look at the Petersen graph and an example of a rich-neighbor edge coloring.\\
@@ -158,7 +158,7 @@ Ljubljana, \letnica}
 
     \subsection{Integer Programming}
 
-        Using SageMath we constructed an integer programming model that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Our interger program looks like this:\\
+        Using SageMath we implement an integer programming model that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Writen matematically, our interger program looks like this:\\
 
         \noindent minimize $t$ \hfill \normalsize{\textcolor{black}{we minimize the number of colors we need}}\\
         %vsoto sm dala do 2delta - 1 prej je bla do k a je to kul???
@@ -176,32 +176,29 @@ Ljubljana, \letnica}
 
         %\ \ \ \ \ \ \ \ \ \ \ \ \ \ $t \geq 2 \Delta - 1$ \hfill \normalsize{\textcolor{black}{we use $\geq 2 \Delta - 1$ colors}}\\
 
-        \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\\
+        \ \ \ \ \ \ \ \ \ \ \ $\forall e: \quad 0 \leq y_{e} \leq 1$, $y_{e} \in \Z$\hfill \normalsize{\textcolor{black}{solutions are binary variables}}\\
 
         \ \ \ \ \ \ \ \ \ \ \ $\forall e \ \forall i: \quad 0 \leq x_{ei} \leq 1$, $x_{ei} \in \Z$,\\
 
         where
-        \begin{align*}        x_{ei} = \begin{cases}
-                    1, \  \text{if edge $e$ is color $i$} \\
-                    0, \  \text{otherwise}
-            \end{cases} & \text{and} & 
-            y_{e} = \begin{cases}
+        \begin{align*} x_{ei} = 
+            \begin{cases}
+                1, \  \text{if edge $e$ is color $i$} \\
+                0, \  \text{otherwise}
+            \end{cases} \ \ & \text{and} & 
+                y_{e} = 
+            \begin{cases}
                 1, \  \text{if edge $e$ is rich} \\
                 0, \  \text{otherwise.}
             \end{cases}
-        \end{align*}\\
+        \end{align*}
 
+        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$ by adding the following constraint $t = 2\Delta - 1,$
+        since the coloring can't be made with less colors (every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color) and any more colors do not satisfie the conjecture. Therefore we only check if the program has a solution that satisfies all the constraints. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
 
-        %js bi rekla da ne fiksiramo st barv in vsaka povezava ma 2delta -2 sosednjih povezav, ampak sklep pa drzi kr pac se to povezavo stejemo da more bit svoje barve
-        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$ by adding the following constraint
-        $$
-            t = 2\Delta - 1,
-        $$
-        since the coloring can't be made with less colors (every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color) and any more colors do not satisfie the conjecture. Therefore we only check if the program has a solution that satisfies all the constraints and the conjecture. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
+        %\pagebreak
 
-        \pagebreak
-
-        Our implementation of the IPL is demonstrated in the following code.
+        Our actual implementation of the IPL is demonstrated in the following code.
         \begin{algorithm}[!htbp]
             \caption{richNeighbor}\label{algo:richNeighbor}
             \LinesNumberedHidden
@@ -214,8 +211,8 @@ Ljubljana, \letnica}
 
             \SetKwFunction{FMain}{richNeighbor}
 
-            \KwInput{Graph $G$}
-            \KwOutput{Colors $colors$, Rich edges $richEdges$}
+            \KwInput{graph $G$}
+            \KwOutput{colors of edges $colors$, rich edges $richEdges$}
 
             $p \gets$ MixedIntegerLinearProgram(maximization = False)\;
             $x \gets p.\text{new\_variable(binary = True)}$\;
@@ -322,9 +319,9 @@ Ljubljana, \letnica}
 
     \subsection{Iterative Algorithm}
             
-        We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did not make much sense implementing a slower algorythm.
+        We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did't make much sense implementing a slower algorythm.
 
-    \pagebreak
+\pagebreak
 
 \section{Complete search}
 
@@ -363,12 +360,9 @@ Ljubljana, \letnica}
     In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge here is testing all possible colorings in graphs with many vertices.
     Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.\\
 
-    We start with a random graph, check if the conjecture holds and then 
-    modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well in reality, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, there is a small probability that we generate a completely new random graph and start again.\\
+    We start with a random graph, check if the conjecture holds using our ILP and then modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well in reality, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, we keep a small probability that we generate a completely new random graph and start again.\\
 
-    %Razlog je, da ce je v grafu obstaja rich neighbor edge coloring potem je vecja verjetnost da bo v bliznjih grafih prav tako obstajala, zato dopuscamo manjso moznost da popolnoma na novo generiramo graf.
-
-    Written below is the algorithm for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges we did not have before. It repeats this until it gets a connected modified graph.
+    Written below is the algorithm \texttt{tweak} for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges in one of two possible ways which preserves the regularity of the graph. There is a chance that the newly formed graph is not connected, so we check for that and if it is not, we restart the process until we get a connected graph.\\
     \begin{algorithm}[!htbp]
         \caption{tweak}\label{algo:tweakGraph}
         \LinesNumberedHidden
@@ -381,18 +375,18 @@ Ljubljana, \letnica}
         
         \SetKwFunction{FTweakGraph}{tweakGraph}
         
-        \KwInput{Graph $G$}
-        \KwOutput{Tweaked graph $T$}
+        \KwInput{graph $G$}
+        \KwOutput{tweaked graph $T$}
         
 
             $T \gets \text{graph.copy()}$\;
             
             $e_1 \gets T.\text{random\_edge()}$\;
-            $u_1, v_1, \text{extra}_1 \gets e_1$\;
+            $u_1, v_1, \gets e_1$\;
             $T.\text{delete\_edge}(e_1)$\;
             
             $e_2 \gets T.\text{random\_edge()}$\;
-            $u_2, v_2, \text{extra}_2 \gets e_2$\;
+            $u_2, v_2,  \gets e_2$\;
             $T.\text{delete\_edge}(e_2)$\;
         
             $p \gets \text{random}()$\;
@@ -409,19 +403,18 @@ Ljubljana, \letnica}
             }
             
             \Return $T$\;
-        
-        
         \end{algorithm}
 
-    
-    \pagebreak
     \subsection{Graph generation}
         Since we only need one graph to start our iterative process, we can generate it randomly, using the built-in SageMath function \texttt{graphs.RandomRegular}.
 
-\section{Checking the coloring} %tukej daj algoritma chack coloring in check richness. Ostalo bom js napisu
-    %dodaj še opisa algoritmov
+\section{Checking the coloring} 
+    In order to make sure that our ILP implentation is without fault, we also implement the functions \texttt{checkColoring} and \texttt{checkRichness} which check if our program always returns a proper coloring, and if the coloring is actually a rich-neighbor edge coloring.\\ 
+
+    \texttt{checkColoring} takes a graph $G$ and the output coloring of our ILP. It iterates over each vertex in the graph, checks it's neighbors and returns false if a color of the edges that include it  repeats. \\
+
     \begin{algorithm}[!htbp]
-        \caption{Check Coloring}\label{algo:checkColoring}
+        \caption{checkColoring}\label{algo:checkColoring}
         \LinesNumberedHidden
         \DontPrintSemicolon
         %\SetAlgoNlRelativeSize{0}
@@ -432,7 +425,7 @@ Ljubljana, \letnica}
 
         \SetKwFunction{FCheckColoring}{checkColoring}
 
-        \KwInput{Graph $G$, Coloring $coloring$}
+        \KwInput{graph $G$, colors of edges $coloring$}
         \KwOutput{Boolean indicating proper coloring}
 
         \For{$v$ in $G.vertices()$}{
@@ -451,9 +444,10 @@ Ljubljana, \letnica}
         \Return \text{True}\;
     \end{algorithm}
 
+    \texttt{checkRichness} takes a graph $G$ and the output rich edges of our ILP. It iterates over each edge in the graph, checks it's neighbors and returns false if it doesn't find a rich edge for each edge.\\
 
     \begin{algorithm}[!htbp]
-        \caption{Check Richness}\label{algo:checkRichness}
+        \caption{checkRichness}\label{algo:checkRichness}
         \LinesNumberedHidden
         \DontPrintSemicolon
         %\SetAlgoNlRelativeSize{0}
@@ -464,7 +458,7 @@ Ljubljana, \letnica}
         
         \SetKwFunction{FCheckRichness}{checkRichness}
         
-        \KwInput{Graph $G$, Rich edges $richEdges$}
+        \KwInput{graph $G$, rich edges $richEdges$}
         \KwOutput{Boolean indicating proper rich-neighbor edge coloring}
         
         \For{$(u, v)$ in $G.edges(labels = False)$}{
