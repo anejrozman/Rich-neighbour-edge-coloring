@@ -3,11 +3,11 @@
 \contentsline {section}{\tocsection {}{2}{Algorithms}}{4}{}%
 \contentsline {subsection}{\tocsubsection {}{2.1}{Integer Programming}}{4}{}%
 \contentsline {subsection}{\tocsubsection {}{2.2}{Iterative Algorithm}}{6}{}%
-\contentsline {section}{\tocsection {}{3}{Complete search}}{7}{}%
-\contentsline {subsection}{\tocsubsection {}{3.1}{Graph generation}}{7}{}%
-\contentsline {section}{\tocsection {}{4}{Random Search}}{7}{}%
-\contentsline {subsection}{\tocsubsection {}{4.1}{Graph generation}}{8}{}%
-\contentsline {section}{\tocsection {}{5}{Checking the coloring}}{8}{}%
-\contentsline {section}{\tocsection {}{6}{Findings}}{9}{}%
-\contentsline {section}{\tocsection {}{7}{Conclusion}}{9}{}%
-\contentsline {section}{\tocsection {}{}{References}}{9}{}%
+\contentsline {section}{\tocsection {}{3}{Complete search}}{6}{}%
+\contentsline {subsection}{\tocsubsection {}{3.1}{Graph generation}}{6}{}%
+\contentsline {section}{\tocsection {}{4}{Random Search}}{6}{}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{Graph generation}}{7}{}%
+\contentsline {section}{\tocsection {}{5}{Checking the coloring}}{7}{}%
+\contentsline {section}{\tocsection {}{6}{Findings}}{8}{}%
+\contentsline {section}{\tocsection {}{7}{Conclusion}}{8}{}%
+\contentsline {section}{\tocsection {}{}{References}}{8}{}%
