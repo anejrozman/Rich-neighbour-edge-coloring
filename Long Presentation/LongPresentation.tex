@@ -342,7 +342,7 @@ Ljubljana, \letnica}
             
         We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did't make much sense implementing another slow algorythm, since it wouldn't make much of a difference in the number of graphs we would be able to check.
 
-
+\pagebreak
 \section{Complete search}
 
     As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices grows exponentially with $n$. This poses a computational challenge, as checking all graphs becomes impossible for larger values of n. However, we can still check all graphs for smaller values of n up to 15.
@@ -378,9 +378,11 @@ Ljubljana, \letnica}
 \section{Random Search}
 
     In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge here is testing all possible colorings in graphs with many vertices.
-    Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.
+    Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.\\
 
     We start with a random graph, check if the conjecture holds using our ILP and then modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well in reality, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, we keep a small probability that we generate a completely new random graph and start again.\\
+
+    \pagebreak
 
     Written below is the algorithm \texttt{tweak} for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges in one of two possible ways which preserves the regularity of the graph. There is a chance that the newly formed graph is not connected, so we check for that and if it is not, we restart the process until we get a connected graph.\\
     
@@ -430,11 +432,12 @@ Ljubljana, \letnica}
         Since we only need one graph to start our iterative process, we can generate it randomly, using the built-in SageMath function \texttt{graphs.RandomRegular}.
 
 \section{Checking the coloring} 
-    In order to make sure that our ILP implentation is without fault, we also implement the functions \texttt{checkColoring} and \texttt{checkRichness} which check if our program always returns a proper coloring, and if the coloring is actually a rich-neighbor edge coloring.\\ 
+    In order to make sure that our ILP implentation is without fault, we also implement the functions \texttt{checkColoring} and \texttt{checkRichness} which check if our program always returns a proper coloring, and if the coloring is actually a rich-neighbor edge coloring.\\
+    \pagebreak
+    
+    \texttt{checkColoring} takes a graph $G$ and the output coloring of our ILP. It iterates over\* each vertex in the graph, checks it's neighbors and returns false if a color of the edges that include it  repeats. \\
 
-    \texttt{checkColoring} takes a graph $G$ and the output coloring of our ILP. It iterates over each vertex in the graph, checks it's neighbors and returns false if a color of the edges that include it  repeats. \\
-
-    \begin{algorithm}[!htbp]
+    \begin{algorithm}%[!htbp]
         \caption{checkColoring}\label{algo:checkColoring}
         \LinesNumberedHidden
         \DontPrintSemicolon
