@@ -9,5 +9,4 @@
 \contentsline {subsection}{\tocsubsection {}{4.1}{Graph generation}}{8}{}%
 \contentsline {section}{\tocsection {}{5}{Checking the coloring}}{8}{}%
 \contentsline {section}{\tocsection {}{6}{Findings}}{10}{}%
-\contentsline {section}{\tocsection {}{7}{Conclusion}}{10}{}%
 \contentsline {section}{\tocsection {}{}{References}}{10}{}%

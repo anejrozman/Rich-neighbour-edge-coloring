@@ -195,21 +195,25 @@ Ljubljana, \letnica}
         In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$ by adding the following constraint $t = 2\Delta - 1$. We do this since the coloring can't be made with less colors, because every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color. 
         
         \begin{center}
-            \begin{tikzpicture}[every node/.style={draw,circle, minimum size=4mm, style={text opacity=0}}]
-                \node (A) at (0,0) {$1$};
-                \node (B) at (2,0) {$2$};
+            \begin{tikzpicture}[node distance={20mm}, thick, main/.style = {draw, circle}] 
+                \node[main] (1) {$a$}; 
+                \node[main] (2) [right of=1] {$b$}; 
         
-                % v sredini
-                \draw[line width=0.7pt] (A) -- (B);
-
+                % sredina
+                \draw (1) -- node[midway, above] {1} (2); 
+            
                 % levo
-                \draw[line width=0.7pt, label=1] (A.west) -- ++(-2,1);
-                \draw[line width=0.7pt] (A.west) -- ++(-2,-1);
-
+                \draw (1) -- node[midway, above, sloped] {$k$} ++(-2,1);
+                \draw (1) -- node[midway, above, sloped] {2} ++(-2,-1.1);
+                %\draw (1) -- node[midway, above left, sloped] {3} ++(-2,-0.3);
+                \draw (1) -- node[above left]{\vdots} ++(-2, 0.1);
+            
                 %desno
-                \draw[line width=0.7pt] (B.east) -- ++(2,1);
-                \draw[line width=0.7pt] (B.east) -- ++(2,-1);
-
+                \draw (2) -- node[midway, above, sloped] {$2k-1$} ++(2,1);
+                \draw (2) -- node[midway, above, sloped] {$k+1$} ++(2,-1.1);
+                %\draw (2) -- node[midway, above right, sloped] {$k+2$} ++(2,-0.3);
+                \draw (2) -- node[above right]{\vdots} ++(2, 0.1);
+        
             \end{tikzpicture}
         \end{center}
 
@@ -436,7 +440,7 @@ Ljubljana, \letnica}
     \textcolor{white}{i\\ i\\ i\\}
     \pagebreak
     
-    \texttt{checkColoring} takes a graph $G$ and the output $colors$ of our ILP. It iterates over\* each vertex in the graph, checks its neighbors and returns false if a color repeats on multiple of that edges.\\ %of the edges that include it,  repeats. \\
+    \texttt{checkColoring} takes a graph $G$ and the output $colors$ of our ILP. It iterates over\* each vertex in the graph, checks all edges adjacent to it, and returns false if it finds two or more edges with the same color.\\
 
     \begin{algorithm}%[!htbp]
         \caption{checkColoring}\label{algo:checkColoring}
@@ -469,7 +473,7 @@ Ljubljana, \letnica}
         \Return \text{True}\;
     \end{algorithm}
 
-    \texttt{checkRichness} takes a graph $G$ and the output $richEdges$ of our ILP. It iterates over each edge in the graph, checks its neighbors and returns false if it doesn't find a rich neighboring edge for each edge.\\
+    \texttt{checkRichness} takes a graph $G$ and the output $richEdges$ of our ILP. It iterates over each edge in the graph, checks all edges adjacent to it, and returns false if it doesn't find a rich edge.\\
 
     \begin{algorithm}[!htbp]
         \caption{checkRichness}\label{algo:checkRichness}
@@ -504,13 +508,12 @@ Ljubljana, \letnica}
         }
         \Return \text{True}\;
     \end{algorithm}
-    
-    
 
+\pagebreak
 
 \section{Findings}
+    
 
-\section{Conclusion}
 
 \bibliographystyle{plain}
 \bibliography{lit}
