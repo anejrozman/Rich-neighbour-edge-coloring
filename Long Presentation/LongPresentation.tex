@@ -512,7 +512,7 @@ Ljubljana, \letnica}
 \pagebreak
 
 \section{Findings}
-    With the help of professor Riste Skrekovski, we were able to use external servers to run our algorythms for an extended period of time. We ran a complete search for all regular graphs up to 15 vertices and a random search for regular graphs with 16 vertices or more. The outputs of our scripts can be seen in the folders \texttt{Complete} and \texttt{Random} in our GitHub repository at \href{https://github.com/anejrozman/Rich-neighbour-edge-coloring}{github/anejrozman}. Some of the numbers of checked graphs with the random search are shown in table \ref{table:2}.
+    With the help of Professor Riste Škrekovski, we were able to use external servers to run our algorithms for an extended period of time. We ran a complete search for all regular graphs up to 15 vertices and a random search for regular graphs with 16 vertices or more. The output of our scripts can be seen in the folders \texttt{Complete} and \texttt{Random} in our GitHub repository at \href{https://github.com/anejrozman/Rich-neighbour-edge-coloring}{github/anejrozman}. Table \ref{table:2} shows the number of checked graphs using the random search algorithm for certain classes of graphs.
 
     \begin{table}[!htbp]
         \begin{tabular}{|c|c|c|c|c|c|}
@@ -528,15 +528,15 @@ Ljubljana, \letnica}
         11                             & 70            & /             & 220           & /      & 90            \\
         12                             & \textless{}10 & \textless{}10 & \textless{}10 & 10     & \textless{}10 \\ \hline
         \end{tabular}
-        \label{table:2}
         \caption{Number of checked graphs with random search}
+        \label{table:2}
     \end{table}
     
-    \noindent We can clearly see that our ILP slows down significantly with the regularity of the graphs. This makes intuitive snese since the number of constraints that we have to solve is ---------- where $k$ is the regularity and $n$ is the number of vertices of the graph we are using our ILP on  to find a rich-neighbor edge coloring. 
+    \noindent We can clearly see that our ILP slows down significantly with the regularity of the graphs. This makes intuitive sense since the number of constraints that we have to solve is ---------- where $k$ is the regularity and $n$ is the number of vertices in the graph we are using our ILP on to find a rich-neighbor edge coloring.\\
     
-    We ran into some problems with the complete search. We noticed that each file stopped at 100-th iteration and found that it had a minor bug, so we ran it again on our computer and checked all regular graphs up to 13 vertices instead of 15 because the task was to intense for a personal computer.
+    We ran into some problems with the complete search. We noticed that each file stopped at 100-th iteration and found that it had a minor bug. We ran it again on our computer and checked all regular graphs up to 13 vertices instead of 15 because the task was to intense for a personal computer.\\
 
-    \noindent Every graph that was checked satisifes the rich-neighbor edge coloring conjecture.
+    Every graph that was checked satisifes the rich-neighbor edge coloring conjecture.
 
 \bibliographystyle{plain}
 \bibliography{lit}
