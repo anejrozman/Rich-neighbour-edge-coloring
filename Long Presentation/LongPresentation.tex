@@ -157,7 +157,7 @@ Ljubljana, \letnica}
 
     \subsection{Integer Programming}
 
-        Using SageMath we implemented an integer program that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Writen matematically, our interger program looks like this:\\
+        Using SageMath we implement an integer program that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Writen matematically, our interger program looks like this:\\
 
         \noindent minimize $t$ \hfill \normalsize{\textcolor{black}{we minimize the number of colors we need}}\\
         %vsoto sm dala do 2delta - 1 prej je bla do k a je to kul???
@@ -214,10 +214,10 @@ Ljubljana, \letnica}
         \end{center}
 
         
-        And since any coloring with morethan $2\Delta - 1$ colors does not satisfy the conjecture, we only check if the program has a solution that satisfies all the constraints. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
+        And since any coloring with more than $2\Delta - 1$ colors does not satisfy the conjecture, we only check if the program has a solution that satisfies all the constraints. In theory this doesn't make the program faster, but in our practice tests it did make a significant differnece.\\
 
         \pagebreak
-        Our actual implementation of the IPL is demonstrated in the following code.
+        Our actual implementation of the ILP is demonstrated in the following code.
 
 
         \begin{algorithm}%[!htbp]
@@ -305,7 +305,7 @@ Ljubljana, \letnica}
             \pagebreak
 
             \begin{primer}
-                Using the \texttt{richNeighbor} algorithm on the Petersen graph gives us the following result.\\*
+                Using the \texttt{richNeighbor} algorithm on the Petersen graph gives us the following output.\\*
 
                 \begin{align*}
                     colors = \{ & (\{0, 1\}, 1): 0.0, (\{0, 1\}, 2): 0.0, (\{0, 1\}, 3): 0.0, (\{0, 1\}, 4): 0.0,\\
@@ -345,7 +345,7 @@ Ljubljana, \letnica}
 \pagebreak
 \section{Complete search}
 
-    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices grows exponentially with $n$. This poses a computational challenge, as checking all graphs becomes impossible for larger values of n. However, we can still check all graphs for smaller values of n up to 15.
+    As illustrated in Table \ref{table:1}, the number of $k$-regular graphs on $n$ vertices grows exponentially with $n$. This poses a computational challenge, as checking all graphs becomes impossible for larger values of n. However, we can still check all graphs for smaller values of n up to 13.
 
     \begin{table}[!htbp]
         \centering
@@ -372,19 +372,19 @@ Ljubljana, \letnica}
         \label{table:1}
     \end{table}
     \subsection{Graph generation}
-        Graphs for the complete search were taken from a collection of files, provided by Professor Skrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices, since the number of graphs beyond that is too much to handle.\\
+        Graphs for the complete search were taken from a collection of files, provided by Professor Škrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices, since the number of graphs beyond that is too much to handle.\\
 
 \section{Random Search}
 
     In addition to examining the hypothesis for smaller graphs, we were also interested in checking if the conjecture holds for larger graphs. The challenge here is testing all possible colorings in graphs with many vertices.
-    Recognizing the enormity of this task, a random search algoritm seemed a natural continuation of our problem. Here we opted for a modification approach.\\
+    Recognizing the enormity of this task, a random search algorithm seemed like a natural continuation of our problem. Here we opted for a modification approach.\\
 
-    We start with a random graph, check if the conjecture holds using our ILP and then modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well in reality, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, we keep a small probability that we generate a completely new random graph and start again.\\
+    We start with a random graph and use our ILP to check if the conjecture holds for it. Then, we modify the graph in a way that preserves its regularity and connectedness. We repeat this process indefinitely, or, actually, until we stop our program. We know that if a rich-neighbor edge coloring exists in a given graph, there is a higher probability that it also exists in similar graphs. Therefore, on every iteration, we keep a small probability that we generate a completely new random graph and start again.\\
 
     \textcolor{white}{i\\ i\\ i\\ i\\}
     \pagebreak
 
-    Written below is the algorithm \texttt{tweak} for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges in one of two possible ways which preserves the regularity of the graph. There is a chance that the newly formed graph is not connected, so we check for that and if it is not, we restart the process until we get a connected graph.\\
+    Written below is the algorithm \texttt{tweak} for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges in one of two possible ways that preserve the regularity of the graph. There is a chance that the newly formed graph is not connected, so we check for that and if it is not, we restart the process until we get a connected graph.\\
     
     \begin{algorithm}[!htbp]
         \caption{tweak}\label{algo:tweakGraph}
@@ -432,11 +432,11 @@ Ljubljana, \letnica}
         Since we only need one graph to start our iterative process, we can generate it randomly, using the built-in SageMath function \texttt{graphs.RandomRegular}.
 
 \section{Checking the coloring} 
-    In order to make sure that our ILP implentation is without fault, we also implement the functions \texttt{checkColoring} and \texttt{checkRichness} which check if our program always returns a proper coloring, and if the coloring is actually a rich-neighbor edge coloring.\\
+    In order to make sure that our ILP implentation is without fault, we also implemented the functions \texttt{checkColoring} and \texttt{checkRichness} which check if our program always returns a proper coloring, and if the coloring is actually a rich-neighbor edge coloring.\\
     \textcolor{white}{i\\ i\\ i\\}
     \pagebreak
     
-    \texttt{checkColoring} takes a graph $G$ and the output coloring of our ILP. It iterates over\* each vertex in the graph, checks it's neighbors and returns false if a color of the edges that include it  repeats. \\
+    \texttt{checkColoring} takes a graph $G$ and the output $colors$ of our ILP. It iterates over\* each vertex in the graph, checks its neighbors and returns false if a color repeats on multiple of that edges.\\ %of the edges that include it,  repeats. \\
 
     \begin{algorithm}%[!htbp]
         \caption{checkColoring}\label{algo:checkColoring}
@@ -469,7 +469,7 @@ Ljubljana, \letnica}
         \Return \text{True}\;
     \end{algorithm}
 
-    \texttt{checkRichness} takes a graph $G$ and the output rich edges of our ILP. It iterates over each edge in the graph, checks it's neighbors and returns false if it doesn't find a rich edge for each edge.\\
+    \texttt{checkRichness} takes a graph $G$ and the output $richEdges$ of our ILP. It iterates over each edge in the graph, checks its neighbors and returns false if it doesn't find a rich neighboring edge for each edge.\\
 
     \begin{algorithm}[!htbp]
         \caption{checkRichness}\label{algo:checkRichness}
