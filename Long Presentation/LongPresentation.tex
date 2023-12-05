@@ -532,7 +532,7 @@ Ljubljana, \letnica}
         \label{table:2}
     \end{table}
     
-    \noindent We can clearly see that our ILP slows down significantly with the regularity of the graphs. This makes intuitive sense since the number of constraints that we have to solve is ---------- where $k$ is the regularity and $n$ is the number of vertices in the graph we are using our ILP on to find a rich-neighbor edge coloring.\\
+    \noindent We can clearly see that our ILP slows down significantly with the regularity of the graphs. This makes intuitive sense since the number of constraints that we have to solve is $\mathcal{O}(k^4n)$ where $k$ is the regularity and $n$ is the number of vertices in the graph we are using our ILP on to find a rich-neighbor edge coloring.\\
     
     We ran into some problems with the complete search. We noticed that each file stopped at 100-th iteration and found that it had a minor bug. We ran it again on our computer and checked all regular graphs up to 13 vertices instead of 15 because the task was to intense for a personal computer.\\
 

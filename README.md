@@ -6,5 +6,10 @@ In an edge coloring, an edge $e$ is called $rich$ if all edges adjacent to $e$ h
 We want to verify the following conjecture:
 $$For \ every \ graph \ G \ of \ maximum \ degree \ \Delta, X_{rn}'(G) \leq 2\Delta - 1 \ holds.$$
 
-We implement the coloring and apply the tests to verify the above conjecture fo regular graphs of degree $\Delta \geq 4$. For small graphs we do it ... , for larger graphs we apply a random search ...
-For our code base we use Cocalc: https://cocalc.com/projects/bc655648-a5d9-4e01-b8f6-05c82fde0f58/files/
+In our paper we implement an integer linear program for verifying the above conjecture for $K$-regular graphs on $N$ vertices where $N > K\geq 4$. 
+
+## Main documents:
+- `completeILP.py` is a specific sage file that takes a .txt file as its input and expects that each line in said file contains a sage graph object. It then iterates over the file and checks each graph if it has a rich-neighbor edge coloring, in case it finds a counterexample it outputs "BINGO" and the graph's adjacency matrix in the terminal.
+
+- `randomILP.py` is a sage file that takes in two inputs, K for graph regularity, and N for the number of vertices. It then generates a random K-regular graph on N vertices and ...
+
