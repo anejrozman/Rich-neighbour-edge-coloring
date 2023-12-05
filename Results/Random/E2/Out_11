@@ -1,0 +1,5 @@
+Invalid input for N and K. 
+N * K must be even 
+N and K must be positive 
+K must be less than N - 1
+start
