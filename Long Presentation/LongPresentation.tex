@@ -150,7 +150,7 @@ Ljubljana, \letnica}
     \end{center}
     We can see that for the Petersen graph (which is 3-regular) we can find an appropriate coloring with 5 colors so $X'_{rn} \leq 5 \leq 2 \cdot 3 - 1 = 5$. This shows that the conjecture holds for this graph.
     \end{primer}\\
-    \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
+    \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
 
 
 \section{Algorithms}
@@ -318,7 +318,7 @@ Ljubljana, \letnica}
                 \begin{align*}
                     richEdges = \{& \{0, 1\}: 1.0, \{0, 4\}: 0.0, \{0, 5\}: 0.0, \{1, 2\}: 1.0, \{1, 6\}: 0.0,\\
                                   & \{3, 4\}: 0.0, \{9, 4\}: 1.0, \{5, 7\}: 0.0, \{8, 5\}: 1.0, \{2, 3\}: 1.0,\\
-                                  & \{2, 7\}: 0.0, \{8, 6\}: 0.0, \{9, 6\}: 0.0, \{8, 3\}: 1.0, \{9, 7\}: 1.0\}
+                                  & \{2, 7\}: 0.0, \{8, 6\}: 0.0, \{9, 6\}: 0.0, \{8, 3\}: 1.0, \{9, 7\}: 1.0\}\\
                 \end{align*}
 
                 \noindent Both $colors$ and $richEdges$ are dictionaries and their key-value pairs are structured like
@@ -341,7 +341,7 @@ Ljubljana, \letnica}
     \subsection{Iterative Algorithm}
             
         We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did't make much sense implementing another slow algorythm, since it wouldn't make much of a difference in the number of graphs we would be able to check.
-
+        \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
 \pagebreak
 \section{Complete search}
 
@@ -371,9 +371,8 @@ Ljubljana, \letnica}
         }
         \label{table:1}
     \end{table}
-
     \subsection{Graph generation}
-        Graphs for the complete search were taken from a collection of files, provided by Professor Skrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices, since the number of graphs beyond that is too much to handle.
+        Graphs for the complete search were taken from a collection of files, provided by Professor Skrekovski. The files contain all $k$-regular graphs on $n$ vertices up to 15 vertices, since the number of graphs beyond that is too much to handle.\\
 
 \section{Random Search}
 
@@ -382,6 +381,7 @@ Ljubljana, \letnica}
 
     We start with a random graph, check if the conjecture holds using our ILP and then modify it in a way that preserves the regularity and connectedness. We repeat this process indefinetly, well in reality, until we stop our program. Since, if a rich-neighbor edge coloring exists in a given graph there is a bigger probability that it also exists in similar graphs, therefore, on every iteration, we keep a small probability that we generate a completely new random graph and start again.\\
 
+    \textcolor{white}{i\\ i\\ i\\ i\\}
     \pagebreak
 
     Written below is the algorithm \texttt{tweak} for modifying graphs. First it selects two random edges and deletes them. Then it generates a random number $p$ from $[0, 1)$ and based on the value of $p$ it adds back two different edges in one of two possible ways which preserves the regularity of the graph. There is a chance that the newly formed graph is not connected, so we check for that and if it is not, we restart the process until we get a connected graph.\\
@@ -433,6 +433,7 @@ Ljubljana, \letnica}
 
 \section{Checking the coloring} 
     In order to make sure that our ILP implentation is without fault, we also implement the functions \texttt{checkColoring} and \texttt{checkRichness} which check if our program always returns a proper coloring, and if the coloring is actually a rich-neighbor edge coloring.\\
+    \textcolor{white}{i\\ i\\ i\\}
     \pagebreak
     
     \texttt{checkColoring} takes a graph $G$ and the output coloring of our ILP. It iterates over\* each vertex in the graph, checks it's neighbors and returns false if a color of the edges that include it  repeats. \\
