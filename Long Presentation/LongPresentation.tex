@@ -72,7 +72,7 @@
 
 % naslednje ukaze ustrezno popravi
 \newcommand{\program}{Financial mathematics} % ime studijskega programa: Matematika/Finančna matematika
-\newcommand{\imeavtorja}{Anej Rozman, Tanja Luštrek} % ime avtorja
+\newcommand{\imeavtorja}{Tanja Luštrek, Anej Rozman} % ime avtorja
 \newcommand{\imementorja}{Assistant Professor Janoš Vidali} % akademski naziv in ime mentorja
 \newcommand{\imesomentorja}{Professor Riste Škrekovski}
 \newcommand{\naslovdela}{Rich-Neighbor Edge Colorings}
@@ -157,7 +157,7 @@ Ljubljana, \letnica}
 
     \subsection{Integer Programming}
 
-        Using SageMath we implement an integer program that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Writen matematically, our interger program looks like this:\\
+        Using SageMath we implemented an integer program that finds a rich-neighbor edge coloring for a given graph using the smallest number of colors possible. Writen matematically, our interger program looks like this:\\
 
         \noindent minimize $t$ \hfill \normalsize{\textcolor{black}{we minimize the number of colors we need}}\\
         %vsoto sm dala do 2delta - 1 prej je bla do k a je to kul???
@@ -192,7 +192,7 @@ Ljubljana, \letnica}
             \end{cases}
         \end{align*}
 
-        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$ by adding the following constraint $t = 2\Delta - 1,$ since the coloring can't be made with less colors, because every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color. 
+        In our implementation of the ILP we fix the number of colors to $2 \Delta - 1$ by adding the following constraint $t = 2\Delta - 1$. We do this since the coloring can't be made with less colors, because every edge has $2 \Delta - 2$ neighboring edges and the edge itself has to be a different color. 
         
         \begin{center}
             \begin{tikzpicture}[every node/.style={draw,circle, minimum size=4mm, style={text opacity=0}}]
