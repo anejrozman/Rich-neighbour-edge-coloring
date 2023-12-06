@@ -11,9 +11,9 @@ In our paper we implement an integer linear program for verifying the above conj
 ## Main files:
 - `LongPresentation.pdf` is a paper which explains the algorthms used for checking the validity of the rich-neighbor edge coloring conjecture and interprets our results. 
 
-- `completeILP.py` is a sage file where we implemented our algorythms for checking specific classes of graphs for exapmple all 4-regular graphs on 10 vertices.
+- `completeILP.py` is a SageMath file where we implemented our algorythms for checking specific classes of graphs for exapmple all 4-regular graphs on 10 vertices.
 
-- `randomILP.py` is a sage file where we implemented our algorythms for randomly checking larger graphs where it is impossible to check each one individually.
+- `randomILP.py` is a SageMath file where we implemented our algorythms for randomly checking larger graphs where it is impossible to check each one individually.
 
 ## Instructions for use
 To run our files you need `SageMath 9.3`. Link for installation: [Download SageMath](https://www.sagemath.org/)
@@ -32,10 +32,10 @@ Command for running in terminal: `sage randomILP.py N K`
 
 
 ## Authors
-Anej Rozman and Tanja Lustrek
+Anej Rozman and Tanja Luštrek
 
 ## Advisers
-Professor Janos Vidali and Professor Riste Skrekovski
+Assistant Professor Janoš Vidali and Professor Riste Škrekovski
 
 
 
