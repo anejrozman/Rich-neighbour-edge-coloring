@@ -18,14 +18,16 @@ In our paper we implement an integer linear program for verifying the above conj
 ## Instructions for use
 To run our files you need `SageMath 9.3`. Link for installation: [Download SageMath](https://www.sagemath.org/)
 
-- `completeILP.py` The file requires an input in the form of a .txt file that contains a sage graph object in each line (see example in file: `exampleInput.txt`). It then iterates over the file and:
+- `completeILP.py` The file requires an input in the form of a .txt file that contains a sage graph object in each line (see example files in folder `exampleFiles`). It then iterates over the file and:
     - if it finds a counterexample for the rich-neighbor edge coloring conjecture it outputs "BINGO" and the graph's adjacency matrix and its representation as a list of neighbors.
     - if a counterexapmle isn't found it outputs "done" when it finishes checking all the graphs in the input file
+
 Command for runnign in terminal: `sage completeILP.py inputFile.txt`
 
 - `randomILP.py` The file requires an input in the form of two numbers $N$ and $K$ for the number of vertices and the regularity of the graph it generate at the start of its iteration. The file contains an infinite loop where it continually checks a graph and randomly tweaks it.
     - if it finds a counterexapmle it outputs "BINGO" and the graph's adjacency matrix and its representation as a list of neighbors.
-To stop the execution of the file you have to manually interrupt it
+    - To stop the execution of the file you have to manually interrupt it
+
 Command for running in terminal: `sage randomILP.py N K`
 
 
