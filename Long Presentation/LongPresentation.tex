@@ -344,7 +344,7 @@ Ljubljana, \letnica}
 
     \subsection{Iterative Algorithm}
             
-        We debated implementing an iterative algorythm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did't make much sense implementing another slow algorythm, since it wouldn't make much of a difference in the number of graphs we would be able to check.
+        We debated implementing an iterative algorithm that finds a rich neighbor edge coloring, but we were not able to come up with anything that runs in polynomial time. From \cite{10.1007/978-3-642-95322-4_17} we know that integer linear programs are NP-complete problems, so it did't make much sense implementing another slow algorithm, since it wouldn't make much of a difference in the number of graphs we would be able to check.
         \textcolor{white}{i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\ i\\}
 \pagebreak
 \section{Complete Search}
@@ -534,9 +534,11 @@ Ljubljana, \letnica}
     
     \noindent We can clearly see that our ILP slows down significantly with the regularity of the graphs. This makes intuitive sense since the number of constraints that we have to solve is $\mathcal{O}(k^4n)$ where $k$ is the regularity and $n$ is the number of vertices in the graph we are using our ILP on to find a rich-neighbor edge coloring.\\
     
-    We ran into some problems with the complete search. We noticed that each file stopped at 100-th iteration and found that it had a minor bug. We ran it again on our computer and checked all regular graphs up to 13 vertices instead of 15 because the task was to intense for a personal computer.\\
+    \subsection{Problems}
+    When going through the complete search file outputs we noticed that each file stopped at 100-th iteration and found that it had a minor bug. We ran it again on our computer and checked all regular graphs up to 13 vertices instead of 15 because the task was to intense for a personal computer.\\
 
-    Every graph that was checked satisifes the rich-neighbor edge coloring conjecture.
+    \subsection{Conclusion}
+    We can confirm that every graph that was checked by our algorithm satisfies the conjecture, so based on this it seems likely that the conjecture could hold for all regular graphs. However, we can't be sure of this since, if a counterexample exists it could quite possibly be a very large graph that is very unlikely to be found by any of our algorithms.
 
 \bibliographystyle{plain}
 \bibliography{lit}
