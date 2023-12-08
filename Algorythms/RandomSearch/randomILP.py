@@ -21,7 +21,7 @@ if (N * K) % 2 != 0 or N <= 0 or K <= 0 or K > N - 1:
     print('Invalid input for N and K. \n' +
           'N * K must be even \n' +
           'N and K must be positive \n' +
-          'K must be less than N - 1')
+          'K must be less or equal to N - 1')
     sys.stdout.flush()
     
 #--------------------------------------------------------------------------------------#
